@@ -1,3 +1,6 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name score_visual_wm
 #' @export
 score_visual_wm <- function(df, threshold=15){
   scored <- df %>% 

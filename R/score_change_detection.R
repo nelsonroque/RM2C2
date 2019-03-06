@@ -1,3 +1,6 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name score_change_detection
 #' @export
 score_change_detection <- function(df) {
   scored <- df %>%

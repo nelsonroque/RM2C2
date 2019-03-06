@@ -1,3 +1,6 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name score_color_dots
 #' @export
 score_color_dots <- function(df, threshold=75){
   scored <- df %>%

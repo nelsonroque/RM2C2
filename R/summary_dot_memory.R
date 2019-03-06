@@ -1,3 +1,6 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name summary_dot_memory
 #' @export
 summary_dot_memory <- function(df, group_var) {
   TASK_NAME <- "DOT_MEMORY"

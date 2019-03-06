@@ -1,3 +1,7 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name summary_symbol_search
+#' @export
 summary_symbol_search <- function(df, group_var) {
   TASK_NAME <- "SYMBOL_SEARCH"
   summary.df <- df %>%

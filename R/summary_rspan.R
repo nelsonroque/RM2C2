@@ -1,3 +1,7 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name summary_rspan
+#' @export
 summary_rspan <- function(df, group_var) {
   TASK_NAME <- "RSPAN"
   summary.df <- df %>%

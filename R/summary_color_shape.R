@@ -1,3 +1,6 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name summary_color_shapes
 #' @export
 summary_color_shapes <- function(df,group_var) {
   TASK_NAME <- "COLOR_SHAPES"

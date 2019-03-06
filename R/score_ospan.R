@@ -1,3 +1,6 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name score_ospan
 #' @export
 score_ospan <- function(df, threshold=0.6){
   scored <- df %>%

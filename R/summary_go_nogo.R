@@ -1,3 +1,7 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name summary_go_nogo
+#' @export
 summary_go_nogo <- function(df, group_var) {
   TASK_NAME <- "GO_NOGO"
   summary.df <- df %>%

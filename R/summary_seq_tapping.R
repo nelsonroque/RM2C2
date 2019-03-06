@@ -1,3 +1,6 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name summary_seq_tapping
 #' @export
 summary_seq_tapping <- function(df, group_var, nontap_cols = c(1:24)) {
   TASK_NAME <- "SEQUENCE_TAPPING"

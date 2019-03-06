@@ -1,3 +1,6 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name summary_change_detection
 #' @export
 summary_change_detection <- function(df, group_var) {
   TASK_NAME = "CHANGE_DETECTION"

@@ -1,3 +1,7 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name score_go_nogo
+#' @export
 score_go_nogo <- function(df, nogo_letter = "X") {
   scored <- df %>%
     mutate(no.go.letter = nogo_letter,

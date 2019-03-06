@@ -1,3 +1,7 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name score_quick_tapping
+#' @export
 score_quick_tapping <- function(df, t_lag=3){
   scored <- df %>%
     separate(center_target_left, into=c("targ_left_x", "targ_left_y"), " ", convert=T) %>%

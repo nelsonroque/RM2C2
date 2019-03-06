@@ -1,3 +1,6 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name score_dot_memory
 #' @export
 score_dot_memory <- function(df, square_size=5) {
   scored <- df %>% 

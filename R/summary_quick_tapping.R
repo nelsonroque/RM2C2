@@ -1,3 +1,7 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name summary_quick_tapping
+#' @export
 summary_quick_tapping <- function(df, group_var) {
   TASK_NAME <- "QUICK_TAPPING"
   

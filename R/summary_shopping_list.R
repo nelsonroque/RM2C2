@@ -1,3 +1,6 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name summary_shopping_list
 #' @export
 summary_shopping_list <- function(df, group_var) {
   TASK_NAME = "SHOPPING_LIST"

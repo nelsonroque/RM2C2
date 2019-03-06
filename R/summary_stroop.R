@@ -1,3 +1,7 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name summary_stroop
+#' @export
 summary_stroop <- function(df, group_var) {
   TASK_NAME <- "STROOP"
   summary.df <- df %>%

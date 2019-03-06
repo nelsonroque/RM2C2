@@ -1,3 +1,6 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name summary_visual_wm
 #' @export
 summary_visual_wm <- function(df, group_var) {
   TASK_NAME <- "VISUAL_WM"

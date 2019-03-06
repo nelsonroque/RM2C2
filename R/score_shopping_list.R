@@ -1,3 +1,6 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name score_shopping list
 #' @export
 score_shopping_list <- function(df){
   scored <- shopping_list %>%

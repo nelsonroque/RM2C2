@@ -1,3 +1,6 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name score_seq_tapping
 #' @export
 score_seq_tapping <- function(df, t_lag=3){
   scored <- df %>%
