@@ -1,0 +1,14 @@
+Package: RM2C2
+Title: Scoring and Summarizing of Cognitive task data from the Mobile Monitoring of Cognitive Change Project (M2C2).
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Nelson",
+           family = "Roque",
+           role = c("aut", "cre"),
+           email = "nur375@psu.edu")
+Description: Processes and scores Cognitive task data from the Mobile Monitoring of Cognitive Change Project (M2C2).
+Depends: R (>= 3.4.0), tidyverse
+License: MIT
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1

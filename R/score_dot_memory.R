@@ -1,0 +1,32 @@
+#' @export
+score_dot_memory <- function(df, square_size=5) {
+  scored <- df %>% 
+    separate(dot_locations, c("dot1","dot2","dot3"), " ", convert=T) %>%
+    separate(dot1, c("dot1_rx", "dot1_ry"), "_", convert=T) %>%
+    separate(dot2, c("dot2_rx", "dot2_ry"), "_", convert=T) %>%
+    separate(dot3, c("dot3_rx", "dot3_ry"), "_", convert=T) %>%
+    separate(user_answers, c('user_dot1', "user_dot2", "user_dot3"), " ", convert=T) %>%
+    separate(user_dot1, c("user_dot1_rx", "user_dot1_ry"), "_", convert=T) %>%
+    separate(user_dot2, c("user_dot2_rx", "user_dot2_ry"), "_", convert=T) %>%
+    separate(user_dot3, c("user_dot3_rx", "user_dot3_ry"), "_", convert=T) %>%
+    mutate_at(.vars = vars(dot1_rx:user_dot3_ry),
+              .funs = funs(`1`=add_to(.,1))) %>%
+    mutate_at(.vars = vars(dot1_rx_1:user_dot3_ry_1),
+              .funs = funs(`coord`=mult_by(.,square_size))) %>%
+    mutate(r1_distance = distance(user_dot1_rx_1_coord, dot1_rx_1_coord,
+                                  user_dot1_ry_1_coord, dot1_ry_1_coord),
+           r2_distance = distance(user_dot2_rx_1_coord, dot2_rx_1_coord,
+                                  user_dot2_ry_1_coord, dot2_ry_1_coord),
+           r3_distance = distance(user_dot3_rx_1_coord, dot3_rx_1_coord,
+                                  user_dot3_ry_1_coord, dot3_ry_1_coord)) %>%
+    mutate(r1_perfect = ifelse(r1_distance == 0, 1, 0),
+           r2_perfect = ifelse(r2_distance == 0, 1, 0),
+           r3_perfect = ifelse(r3_distance == 0, 1, 0),
+           perfect_response = ifelse(r1_distance == 0 & r2_distance == 0 & r3_distance == 0,1,0)) %>%
+    rowwise() %>%
+    mutate(sum_perfect_dots = sum(c(r1_perfect, r2_perfect, r3_perfect)),
+           median_error_distance = median(c(r1_distance, r2_distance, r3_distance)),
+           sum_error_distance = sum(c(r1_distance, r2_distance, r3_distance)))
+    
+  return(scored)
+}
