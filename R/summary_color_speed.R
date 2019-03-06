@@ -1,3 +1,7 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name summary_color_speed
+#' @export
 summary_color_speed <- function(df, group_var) {
   TASK_NAME <- "COLOR_SPEED"
   summary.df <- df %>%
