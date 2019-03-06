@@ -27,7 +27,8 @@ library(RM2C2)
 # ----------------------------------
 
 #pc.path <- "~/Apps/"
-pc.path <- "C:/Users/nur375/Box/Projects/status/current/RM2C2/"
+usr.path <- "C:/nar09/"
+pc.path <- paste0(usr.path,"Box/Projects/status/current/RM2C2/")
 project.path <- paste0(pc.path,"data/parsed/")
 
 # ----------------------------------
