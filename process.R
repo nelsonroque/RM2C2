@@ -21,13 +21,14 @@
 library(tidyverse)
 library(readr)
 library(RM2C2)
+devtools::install_github("nelsonroque/RM2C2", force=T)
 
 # ----------------------------------
 # SET PATHS
 # ----------------------------------
 
-#pc.path <- "~/Apps/"
-usr.path <- "C:/nar09/"
+#usr.path <- "C:/Users/nar09/"
+usr.path <- "C:/Users/nur375/"
 pc.path <- paste0(usr.path,"Box/Projects/status/current/RM2C2/")
 project.path <- paste0(pc.path,"data/parsed/")
 
@@ -150,4 +151,4 @@ b <- summary_color_dots(a,"user_id")
 # --------------------------------------------------------------------------
 rm(a); rm(b);
 a <- score_visual_wm(visual_wm)
-b <- summary_visual_wm(b, group_var="user_id")
+b <- summary_visual_wm(a, group_var="user_id")
