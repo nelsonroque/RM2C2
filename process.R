@@ -145,7 +145,7 @@ c <- summary_seq_tapping(b, group_var=c("user_id"), nontap_cols=c(1:32))
 # --------------------------------------------------------------------------
 rm(a); rm(b);
 a <- score_color_dots(color_dots,threshold=75)
-b <- summary_color_dots(a,"id")
+b <- summary_color_dots(a,"user_id")
 # --------------------------------------------------------------------------
 rm(a); rm(b);
 a <- score_visual_wm(visual_wm)
