@@ -1,4 +1,6 @@
-# RM2C2: Data processing scripts for the Mobile Monitoring of Cognitive Change Research Platform developed by Dr. Martin Sliwinski.
+# RM2C2
+
+#### Data processing scripts for the Mobile Monitoring of Cognitive Change Research Platform developed by Dr. Martin Sliwinski.
 ---
 
 # Installation
