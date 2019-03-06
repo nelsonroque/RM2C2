@@ -10,4 +10,4 @@ devtools::install_github("nelsonroque/RM2C2", force=T)
 ```
 
 ## To list all available functions, run the following command
-lsf.str("package:RM2C2")
+```lsf.str("package:RM2C2")```
