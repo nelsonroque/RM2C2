@@ -1,3 +1,7 @@
+#' RM2C2: Scoring, Summarizing
+
+#' @name restructure_tapping_data
+#' @export
 restructure_tapping_data <- function(df, nontap_cols = c(1:17), tap_col = c(18)) {
   restructured <- data.frame()
   for(row in 1:nrow(df)){
