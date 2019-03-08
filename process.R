@@ -115,15 +115,15 @@ a <- score_stroop(stroop)
 b <- summary_stroop(a, "user_id")
 # --------------------------------------------------------------------------
 rm(a); rm(b);
-a <- score_ospan(ospan)
+a <- score_span(ospan)
 b <- summary_ospan(a, "user_id")
 # --------------------------------------------------------------------------
 rm(a); rm(b);
-a <- score_sspan(sspan)
+a <- score_span(sspan)
 b <- summary_sspan(a, "user_id")
 # --------------------------------------------------------------------------
 rm(a); rm(b);
-a <- score_rspan(rspan)
+a <- score_span(rspan)
 b <- summary_rspan(a, "user_id")
 # --------------------------------------------------------------------------
 rm(a); rm(b);
