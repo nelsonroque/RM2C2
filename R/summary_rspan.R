@@ -12,14 +12,8 @@ summary_rspan <- function(df, group_var) {
               median.RT.recall = median(recall.RT, na.rm=T),
               mean.RT.recall = mean(recall.RT, na.rm=T),
               sd.RT.recall = sd(recall.RT, na.rm=T),
-              mean.prop.dist.accuracy = mean(prop.dist.accuracy),
-              sd.prop.dist.accuracy = sd(prop.dist.accuracy),
-              mean.prop.mem.accuracy = mean(prop.mem.accuracy),
-              sd.prop.mem.accuracy = sd(prop.mem.accuracy),
-              n.perfect.distractor = sum(perfect.distractor),
-              n.perfect.recall = sum(perfect.recall),
-              n.flagged.distractor = sum(flag.dist.low.accuracy == 1),
-              n.flagged.recall = sum(flag.mem.low.accuracy == 1),
+              n.perfect.distractor = sum(perfect.distractor.trial),
+              n.perfect.recall = sum(perfect.recall.trial),
               n.trials = n())
   
   # add task name to column names
