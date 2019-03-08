@@ -34,11 +34,11 @@ score_span <- function(df, id_var, trial_var) {
   
   # sum correct distractor responses
   varname5 <- "perfect.distractor.trial"
-  new_method5 <- paste0("sum_distractor_correct_anyorder", "==", "set_size")
+  new_method5 <- paste0("sum.distractor.correct.anyorder", "==", "set_size")
   
   # sum correct recall responses
   varname6 <- "perfect.recall.trial"
-  new_method6 <- paste0("sum_recall_correct_anyorder", "==", "set_size")
+  new_method6 <- paste0("sum.recall.correct.anyorder", "==", "set_size")
   
   # run calls to mutate
   df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method5, varname5))
