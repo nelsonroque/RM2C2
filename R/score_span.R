@@ -68,7 +68,3 @@ score_span <- function(df, id_var, trial_var) {
   
   return(df)
 }
-
-ospan.scored <- score_span(ospan)
-rspan.scored <- score_span(rspan)
-sspan.scored <- score_span(sspan)
