@@ -18,8 +18,6 @@ summary_stroop <- function(df, group_var) {
               mean.RT.incorrect_trials = mean(RT[accuracy == 0], na.rm = T),
               sd.RT.incorrect_trials = sd(RT[accuracy == 0], na.rm = T),
               
-              # without acc
-              
               median.RT.target_left_trials = median(RT[target_answer_location == "LEFT"], na.rm = T),
               mean.RT.target_left_trials = mean(RT[target_answer_location == "LEFT"], na.rm = T),
               sd.RT.target_left_trials = sd(RT[target_answer_location == "LEFT"], na.rm = T),
@@ -28,48 +26,89 @@ summary_stroop <- function(df, group_var) {
               mean.RT.target_right_trials = mean(RT[target_answer_location == "RIGHT"], na.rm = T),
               sd.RT.target_right_trials = sd(RT[target_answer_location == "RIGHT"], na.rm = T),
               
-              median.RT.congruent_trials = median(RT[trial_type == "C" & accuracy == 1], na.rm = T),
-              mean.RT.congruent_trials = mean(RT[trial_type == "C" & accuracy == 1], na.rm = T),
-              sd.RT.congruent_trials = sd(RT[trial_type == "C" & accuracy == 1], na.rm = T),
+              # accurate trials
+              # //////////////////////////////////////////
               
-              median.RT.incongruent_trials = median(RT[trial_type == "I" & accuracy == 1], na.rm = T),
-              mean.RT.incongruent_trials = mean(RT[trial_type == "I" & accuracy == 1], na.rm = T),
-              sd.RT.incongruent_trials = sd(RT[trial_type == "I" & accuracy == 1], na.rm = T),
+              median.RT.congruent.accurate.trials = median(RT[trial_type == "C" & accuracy == 1], na.rm = T),
+              mean.RT.congruent.accurate.trials = mean(RT[trial_type == "C" & accuracy == 1], na.rm = T),
+              sd.RT.congruent.accurate.trials = sd(RT[trial_type == "C" & accuracy == 1], na.rm = T),
               
+              median.RT.incongruent.accurate.trials = median(RT[trial_type == "I" & accuracy == 1], na.rm = T),
+              mean.RT.incongruent.accurate.trials = mean(RT[trial_type == "I" & accuracy == 1], na.rm = T),
+              sd.RT.incongruent.accurate.trials = sd(RT[trial_type == "I" & accuracy == 1], na.rm = T),
               
-              median.RT.II_trials = median(RT[trial_sequence == "II" & accuracy == 1], na.rm = T),
-              mean.RT.II_trials = mean(RT[trial_sequence == "II" & accuracy == 1], na.rm = T),
-              sd.RT.II_trials = sd(RT[trial_sequence == "II" & accuracy == 1], na.rm = T),
+              median.RT.II.accurate.trials = median(RT[trial_sequence == "II" & accuracy == 1], na.rm = T),
+              mean.RT.II.accurate.trials = mean(RT[trial_sequence == "II" & accuracy == 1], na.rm = T),
+              sd.RT.II.accurate.trials = sd(RT[trial_sequence == "II" & accuracy == 1], na.rm = T),
               
-              median.RT.CC_trials = median(RT[trial_sequence == "CC" & accuracy == 1], na.rm = T),
-              mean.RT.CC_trials = mean(RT[trial_sequence == "CC" & accuracy == 1], na.rm = T),
-              sd.RT.CC_trials = sd(RT[trial_sequence == "CC" & accuracy == 1], na.rm = T),
+              median.RT.CC.accurate.trials = median(RT[trial_sequence == "CC" & accuracy == 1], na.rm = T),
+              mean.RT.CC.accurate.trials = mean(RT[trial_sequence == "CC" & accuracy == 1], na.rm = T),
+              sd.RT.CC.accurate.trials = sd(RT[trial_sequence == "CC" & accuracy == 1], na.rm = T),
               
-              median.RT.CI_trials = median(RT[trial_sequence == "CI" & accuracy == 1], na.rm = T),
-              mean.RT.CI_trials = mean(RT[trial_sequence == "CI" & accuracy == 1], na.rm = T),
-              sd.RT.CI_trials = sd(RT[trial_sequence == "CI" & accuracy == 1], na.rm = T),
+              median.RT.CI.accurate.trials = median(RT[trial_sequence == "CI" & accuracy == 1], na.rm = T),
+              mean.RT.CI.accurate.trials = mean(RT[trial_sequence == "CI" & accuracy == 1], na.rm = T),
+              sd.RT.CI.accurate.trials = sd(RT[trial_sequence == "CI" & accuracy == 1], na.rm = T),
               
-              median.RT.IC_trials = median(RT[trial_sequence == "IC" & accuracy == 1], na.rm = T),
-              mean.RT.IC_trials = mean(RT[trial_sequence == "IC" & accuracy == 1], na.rm = T),
-              sd.RT.IC_trials = sd(RT[trial_sequence == "IC" & accuracy == 1], na.rm = T),
+              median.RT.IC.accurate.trials = median(RT[trial_sequence == "IC" & accuracy == 1], na.rm = T),
+              mean.RT.IC.accurate.trials = mean(RT[trial_sequence == "IC" & accuracy == 1], na.rm = T),
+              sd.RT.IC.accurate.trials = sd(RT[trial_sequence == "IC" & accuracy == 1], na.rm = T),
+              
+              # inaccurate trials
+              # //////////////////////////////////////////
+              
+              median.RT.congruent.inaccurate.trials = median(RT[trial_type == "C" & accuracy == 0], na.rm = T),
+              mean.RT.congruent.inaccurate.trials = mean(RT[trial_type == "C" & accuracy == 0], na.rm = T),
+              sd.RT.congruent.inaccurate.trials = sd(RT[trial_type == "C" & accuracy == 0], na.rm = T),
+              
+              median.RT.incongruent.inaccurate.trials = median(RT[trial_type == "I" & accuracy == 0], na.rm = T),
+              mean.RT.incongruent.inaccurate.trials = mean(RT[trial_type == "I" & accuracy == 0], na.rm = T),
+              sd.RT.incongruent.inaccurate.trials = sd(RT[trial_type == "I" & accuracy == 0], na.rm = T),
+              
+              median.RT.II.inaccurate.trials = median(RT[trial_sequence == "II" & accuracy == 0], na.rm = T),
+              mean.RT.II.inaccurate.trials = mean(RT[trial_sequence == "II" & accuracy == 0], na.rm = T),
+              sd.RT.II.inaccurate.trials = sd(RT[trial_sequence == "II" & accuracy == 0], na.rm = T),
+              
+              median.RT.CC.inaccurate.trials = median(RT[trial_sequence == "CC" & accuracy == 0], na.rm = T),
+              mean.RT.CC.inaccurate.trials = mean(RT[trial_sequence == "CC" & accuracy == 0], na.rm = T),
+              sd.RT.CC.inaccurate.trials = sd(RT[trial_sequence == "CC" & accuracy == 0], na.rm = T),
+              
+              median.RT.CI.inaccurate.trials = median(RT[trial_sequence == "CI" & accuracy == 0], na.rm = T),
+              mean.RT.CI.inaccurate.trials = mean(RT[trial_sequence == "CI" & accuracy == 0], na.rm = T),
+              sd.RT.CI.inaccurate.trials = sd(RT[trial_sequence == "CI" & accuracy == 0], na.rm = T),
+              
+              median.RT.IC.inaccurate.trials = median(RT[trial_sequence == "IC" & accuracy == 0], na.rm = T),
+              mean.RT.IC.inaccurate.trials = mean(RT[trial_sequence == "IC" & accuracy == 0], na.rm = T),
+              sd.RT.IC.inaccurate.trials = sd(RT[trial_sequence == "IC" & accuracy == 0], na.rm = T),
               
               n.correct = sum(accuracy == 1),
               n.incorrect = sum(accuracy == 0),
               
               n.C = sum(trial_sequence == "C"),
               n.I = sum(trial_sequence == "I"),
-              
               n.CC = sum(trial_sequence == "CC"),
               n.II = sum(trial_sequence == "II"),
               n.CI = sum(trial_sequence == "CI"),
               n.IC = sum(trial_sequence == "IC"),
               
+              n.C.correct = sum(trial_sequence == "C" & accuracy == 1),
+              n.I.correct = sum(trial_sequence == "I" & accuracy == 1),
+              n.CC.correct = sum(trial_sequence == "CC" & accuracy == 1),
+              n.II.correct = sum(trial_sequence == "II" & accuracy == 1),
+              n.CI.correct = sum(trial_sequence == "CI" & accuracy == 1),
+              n.IC.correct = sum(trial_sequence == "IC" & accuracy == 1),
+              
               n = n()) %>%
     mutate(prop.correct = n.correct/n,
-           prop.incorrect = n.incorrect/n) %>%
-    mutate(conflict.adaptation.effect.median = (median.RT.II_trials - median.RT.CI_trials) - (median.RT.CC_trials - median.RT.IC_trials),
-           conflict.adaptation.effect.mean = (mean.RT.II_trials - mean.RT.CI_trials) - (mean.RT.CC_trials - mean.RT.IC_trials),
-           conflict.adaptation.effect.sd = (sd.RT.II_trials - sd.RT.CI_trials) - (sd.RT.CC_trials - sd.RT.IC_trials))
+           prop.incorrect = n.incorrect/n,
+           prop.C.correct = n.C.correct/n,
+           prop.I.correct = n.I.correct/n,
+           prop.CC.correct = n.CC.correct/n,
+           prop.II.correct = n.II.correct/n,
+           prop.CI.correct = n.CI.correct/n,
+           prop.IC.correct = n.IC.correct/n) %>%
+    mutate(conflict.adaptation.effect.median = (median.RT.II.accurate.trials - median.RT.CI.accurate.trials) - (median.RT.CC.accurate.trials - median.RT.IC.accurate.trials),
+           conflict.adaptation.effect.mean = (mean.RT.II.accurate.trials - mean.RT.CI.accurate.trials) - (mean.RT.CC.accurate.trials - mean.RT.IC.accurate.trials),
+           conflict.adaptation.effect.sd = (sd.RT.II.accurate.trials - sd.RT.CI.accurate.trials) - (sd.RT.CC.accurate.trials - sd.RT.IC.accurate.trials))
   
   # add task name to column names
   len_group_var = length(group_var)
