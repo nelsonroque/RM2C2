@@ -22,7 +22,7 @@ library(tidyverse)
 library(readr)
 devtools::install_github("nelsonroque/RM2C2", force=T)
 library(RM2C2)
-
+library(stringr)
 # ----------------------------------
 # SET PATHS
 # ----------------------------------
