@@ -14,7 +14,9 @@ summary_ospan <- function(df, group_var) {
               sd.RT.recall = sd(recall.RT, na.rm=T),
               n.perfect.distractor = sum(perfect.distractor.trial),
               n.perfect.recall = sum(perfect.recall.trial),
-              n.trials = n())
+              n.trials = n()) %>%
+    mutate(prop.perfect.distractor.trials = n.perfect.distractor / n.trials,
+           prop.perfect.recall.trials = n.perfect.recall / n.trials)
   
   # add task name to column names
   len_group_var = length(group_var)
