@@ -20,15 +20,16 @@
 
 library(tidyverse)
 library(readr)
-library(RM2C2)
 devtools::install_github("nelsonroque/RM2C2", force=T)
+library(RM2C2)
 
 # ----------------------------------
 # SET PATHS
 # ----------------------------------
 
-#usr.path <- "C:/Users/nar09/"
-usr.path <- "C:/Users/nur375/"
+usr.path <- "C:/Users/nar09/"
+#usr.path <- "C:/Users/nur375/"
+usr.path <- "~/"
 pc.path <- paste0(usr.path,"Box/Projects/status/current/RM2C2/")
 project.path <- paste0(pc.path,"data/parsed/")
 
