@@ -17,4 +17,5 @@ library(RM2C2)
 ```
 
 ### 3. To list all available functions, run the following command
-```{r}lsf.str("package:RM2C2")```
+```{r}
+lsf.str("package:RM2C2")```
