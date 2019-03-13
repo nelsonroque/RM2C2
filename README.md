@@ -18,3 +18,10 @@ library(RM2C2)
 
 ### 3. To list all available functions, run the following command
 `lsf.str("package:RM2C2")`
+
+---
+
+# Roadmap
+
+- Exit status and exit screen counts per user, for determining app issues
+- Compliance report summary function
