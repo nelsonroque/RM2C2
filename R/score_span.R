@@ -17,16 +17,16 @@ score_span <- function(df, id_var, trial_var) {
     new_method2 <- paste0("Choice",i,"==","mem",i)
     
     # score recall responses
-    varname2b <- paste0('timeout.', i)
-    new_method2b <- paste0("dist",i,".RT","==","T")
+    #varname2b <- paste0('timeout.', i)
+    #new_method2b <- paste0("dist",i,".RT","==","T")
     
-    varname2c <- paste0("dist",i,".RT")
-    new_method2c <- paste0("ifelse(dist",i,".RT","==","'T'",",NA,","dist",i,".RT)")
+    #varname2c <- paste0("dist",i,".RT")
+    #new_method2c <- paste0("ifelse(dist",i,".RT","==","'T'",",NA,","dist",i,".RT)")
 
     df <- df %>% mutate_(.dots = setNames(new_method1, varname1))
     df <- df %>% mutate_(.dots = setNames(new_method2, varname2))
-    df <- df %>% mutate_(.dots = setNames(new_method2b, varname2b))
-    df <- df %>% mutate_(.dots = setNames(new_method2c, varname2c))
+    #df <- df %>% mutate_(.dots = setNames(new_method2b, varname2b))
+    #df <- df %>% mutate_(.dots = setNames(new_method2c, varname2c))
   }
   # ///////////////////////////////////////////////////////
   # CONSTRUCT VARNAMES AND METHODS
@@ -76,17 +76,17 @@ score_span <- function(df, id_var, trial_var) {
   df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method4, varname4))
   df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method5, varname5))
   df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method6, varname6))
-  #df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method7, varname7))
-  #df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method8, varname8))
-  #df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method9, varname9))
-  #df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method10, varname10))
+  df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method7, varname7))
+  df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method8, varname8))
+  df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method9, varname9))
+  df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method10, varname10))
   
   # run other commands that dont require NSE
-  #df <- df %>% rowwise() %>% mutate(PSP.score = ifelse(sum.recall.correct.anyorder == set_size, set_size, sum.recall.correct.anyorder))
-  #df <- df %>% rowwise() %>% mutate(TSP.score = ifelse(sum.recall.correct.anyorder == set_size, set_size, 0))
+  df <- df %>% rowwise() %>% mutate(PSP.score = ifelse(sum.recall.correct.anyorder == set_size, set_size, sum.recall.correct.anyorder))
+  df <- df %>% rowwise() %>% mutate(TSP.score = ifelse(sum.recall.correct.anyorder == set_size, set_size, 0))
   
-  #df <- df %>% rowwise() %>% mutate(prop.correct.anyorder.distractor.items = sum.distractor.correct.anyorder / set_size)
-  #df <- df %>% rowwise() %>% mutate(prop.correct.anyorder.recall.items = sum.recall.correct.anyorder / set_size)
+  df <- df %>% rowwise() %>% mutate(prop.correct.anyorder.distractor.items = sum.distractor.correct.anyorder / set_size)
+  df <- df %>% rowwise() %>% mutate(prop.correct.anyorder.recall.items = sum.recall.correct.anyorder / set_size)
   
   return(df)
 }
