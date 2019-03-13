@@ -8,7 +8,7 @@
 #' read_ambcog("C:/filepath.csv")
 
 #' @export
-read_ambcog <- function(filepath) {
+read_ambcog <- function(filepath,na=na) {
   if(get_file_ext(filepath) == "csv"){
     df <- readr::read_csv(filepath)
   } else{
@@ -19,7 +19,7 @@ read_ambcog <- function(filepath) {
         df <- haven::read_sas(filepath)
       } else{
         if(get_file_ext(filepath) == "txt"){
-          df <- readr::read_delim(filepath,"|", escape_double = FALSE, trim_ws = TRUE, na=".")
+          df <- readr::read_delim(filepath,"|", escape_double = FALSE, trim_ws = TRUE, na=na)
         } 
       }
     }

@@ -5,7 +5,7 @@
 \alias{stitch_datasets}
 \title{RM2C2: Scoring, Summarizing}
 \usage{
-read_ambcog(filepath)
+read_ambcog(filepath, na = na)
 
 stitch_datasets(df_list, common_id)
 }

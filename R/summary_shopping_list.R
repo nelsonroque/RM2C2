@@ -20,7 +20,7 @@ summary_shopping_list <- function(df, group_var) {
             sd.RT.incorrect = sd(choice_RT[correct == 0], na.rm=T),
             n.correct = sum(correct),
             n.incorrect = sum(correct == 0 & phase == 2),
-            n = max(trial_num)) %>%
+            n = max(trial_num[phase == 2])) %>%
     mutate(prop.correct = n.correct/n,
            prop.incorrect = n.incorrect/n)
 
