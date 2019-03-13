@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "nur375@psu.edu")
 Description: Processes and scores Cognitive task data from the Mobile Monitoring of Cognitive Change Project (M2C2).
-Depends: R (>= 3.4.0), tidyverse
+Depends: R (>= 3.4.0), tidyverse, stringr
 License: MIT
 Encoding: UTF-8
 LazyData: true
