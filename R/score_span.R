@@ -58,7 +58,6 @@ score_span <- function(df, id_var, trial_var) {
   # ///////////////////////////////////////////////////////
   
   # run sequential calls to mutate based on constructed methods
-  df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method3a, varname3a))
   df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method3, varname3))
   df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method4, varname4))
   df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method5, varname5))
