@@ -15,26 +15,13 @@ score_span <- function(df, id_var, trial_var) {
     # score recall responses
     varname2 <- paste0('recall.correct.', i)
     new_method2 <- paste0("Choice",i,"==","mem",i)
-    
-    # score recall responses
-    #varname2b <- paste0('timeout.', i)
-    #new_method2b <- paste0("dist",i,".RT","==","T")
-    
-    #varname2c <- paste0("dist",i,".RT")
-    #new_method2c <- paste0("ifelse(dist",i,".RT","==","'T'",",NA,","dist",i,".RT)")
 
     df <- df %>% mutate_(.dots = setNames(new_method1, varname1))
     df <- df %>% mutate_(.dots = setNames(new_method2, varname2))
-    #df <- df %>% mutate_(.dots = setNames(new_method2b, varname2b))
-    #df <- df %>% mutate_(.dots = setNames(new_method2c, varname2c))
   }
   # ///////////////////////////////////////////////////////
   # CONSTRUCT VARNAMES AND METHODS
   # ///////////////////////////////////////////////////////
-  
-  # sum correct distractor responses
-  varname3a <- "sum.distractor.timeouts"
-  new_method3a <- paste0("sum(",paste0("timeout.",set_seq,collapse=","), ",na.rm=T)")
   
   # sum correct distractor responses
   varname3 <- "sum.distractor.correct.anyorder"
