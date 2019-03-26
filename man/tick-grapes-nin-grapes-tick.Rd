@@ -15,7 +15,6 @@ RM2C2: Scoring, Summarizing
 }
 \examples{
 \%nin\%(x)
-
 }
 \keyword{cognition}
 \keyword{m2c2,}

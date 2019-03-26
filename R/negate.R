@@ -6,6 +6,6 @@
 #' @import tidyverse
 #' @examples
 #' %nin%(x)
-#' 
 #' @export
+
 `%nin%` = Negate(`%in%`)
