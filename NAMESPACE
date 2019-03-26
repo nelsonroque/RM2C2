@@ -3,6 +3,7 @@
 export(SDT_adj)
 export(add_metadate_cols)
 export(add_to)
+export(compliance_report)
 export(distance)
 export(filter_RT)
 export(filter_date)
