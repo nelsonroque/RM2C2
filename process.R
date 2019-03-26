@@ -18,18 +18,18 @@
 # LOAD LIBS
 # ----------------------------------
 
-library(tidyverse)
-library(readr)
-devtools::install_github("nelsonroque/RM2C2", force=T)
+#library(tidyverse)
+#library(readr)
+#devtools::install_github("nelsonroque/RM2C2", force=T)
 library(RM2C2)
-library(stringr)
+#library(stringr)
 # ----------------------------------
 # SET PATHS
 # ----------------------------------
+#usr.path <- "~/"
+#usr.path <- "C:/Users/nar09/"
+usr.path <- "C:/Users/nur375/"
 
-usr.path <- "C:/Users/nar09/"
-#usr.path <- "C:/Users/nur375/"
-usr.path <- "~/"
 pc.path <- paste0(usr.path,"Box/Projects/status/current/RM2C2/")
 project.path <- paste0(pc.path,"data/parsed/")
 
@@ -127,6 +127,9 @@ a <- score_span(rspan)
 b <- summary_rspan(a, "user_id")
 # --------------------------------------------------------------------------
 rm(a); rm(b);
+
+quick_tapping = read_delim("C:/Users/nur375/Box/Projects/status/current/RM2C2/data/parsed/gamedata_Quick Tapping_2019_2_24_18_35.txt", 
+                           "|", escape_double = FALSE, trim_ws = TRUE)
 a <- restructure_tapping_data(quick_tapping)
 b <- score_quick_tapping(a, t_lag=3)
 c <- summary_quick_tapping(b, c("user_id","trial_num"))
