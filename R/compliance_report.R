@@ -5,5 +5,3 @@ compliance_report <- function(df, id_var = "ID", session_var = "session", id_col
               n.unique.sessions = length(unique(session)))
   return(report.df)
 }
-
-compliance_report(all.surveys)
