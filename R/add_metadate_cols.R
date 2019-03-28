@@ -2,14 +2,17 @@
 
 #' @name add_metadate_cols
 #' @param df class: dataframe
+#' @param time_var class: string
+#' @param time_format  class: string
 #' @keywords m2c2, cognition
 #' @import tidyverse
 #' @examples
 #' add_metadate_cols(df)
 #' @export
-add_metadate_cols <- function(df) {
+add_metadate_cols <- function(df, time_var = "timestamp", time_format="%m/%d/%Y") {
   df.w.dates <- df %>%
-    mutate(current_datetime = as.POSIXct(time_stamp, origin = "1960-01-01")) %>%
+    # pass in time_stamp as string
+    mutate(current_datetime = as.POSIXct(UQ(sym(time_var)), origin = "1960-01-01", format=time_format)) %>%
     mutate(WEEK = lubridate::week(current_datetime),
            MONTH = lubridate::month(current_datetime),
            DAY = lubridate::day(current_datetime),

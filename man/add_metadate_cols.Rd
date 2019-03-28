@@ -4,10 +4,15 @@
 \alias{add_metadate_cols}
 \title{RM2C2: Scoring, Summarizing}
 \usage{
-add_metadate_cols(df)
+add_metadate_cols(df, time_var = "timestamp",
+  time_format = "\%m/\%d/\%Y")
 }
 \arguments{
 \item{df}{class: dataframe}
+
+\item{time_var}{class: string}
+
+\item{time_format}{class: string}
 }
 \description{
 RM2C2: Scoring, Summarizing
