@@ -1,6 +1,6 @@
 #' RM2C2: Scoring, Summarizing
 
-#' @name filter_duplicates_keeplast
+#' @name filter_survey_duplicate_records
 #' @param df class: numeric; original X
 #' @param group_vars class: vector; factors to group data by
 #' @param time_var class: vector; variable for time
@@ -10,7 +10,7 @@
 #' filter_duplicates_keeplast(df, group_vars=c("user_id", "Session"), time_var="End Time")
 #' @export
 
-filter_duplicates_keeplast <- function(df, group_vars=c("user_id", "Session"), time_var="End Time") {
+filter_survey_duplicate_records <- function(df, group_vars=c("user_id", "Session"), time_var="End Time") {
   arrange.var <- c(group_vars, time_var)
   order.df <- df %>%
     arrange_(., c(arrange.var))
