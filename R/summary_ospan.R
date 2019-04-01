@@ -12,18 +12,13 @@ summary_ospan <- function(df, group_var) {
               median.RT.recall = median(recall.RT, na.rm=T),
               mean.RT.recall = mean(recall.RT, na.rm=T),
               sd.RT.recall = sd(recall.RT, na.rm=T),
-              median.prop.correct.distractor.items.anyorder = median(prop.correct.anyorder.distractor.items, na.rm=T),
-              median.prop.correct.recall.items.anyorder = median(prop.correct.anyorder.recall.items, na.rm=T),
-              mean.prop.correct.distractor.items.anyorder = mean(prop.correct.anyorder.distractor.items, na.rm=T),
-              mean.prop.correct.recall.items.anyorder = mean(prop.correct.anyorder.recall.items, na.rm=T),
-              sum.PSP.score = sum(PSP.score, na.rm=T),
-              sum.TSP.score = sum(TSP.score, na.rm=T),
               sum.set_size = sum(set_size, na.rm=T),
-              n.correct.distractor.items.anyorder = sum(sum.distractor.correct.anyorder, na.rm=T),
-              n.correct.recall.items.anyorder = sum(sum.recall.correct.anyorder, na.rm=T),
               n.perfect.distractor = sum(perfect.distractor.trial),
               n.perfect.recall = sum(perfect.recall.trial),
-              n.trials = n()) %>%
+              n.trials = n(),
+              sum.FSM.score <- sum(FSM.score, na.rm=T),
+              sum.PSM.ordered.score <- sum(PSM.ordered.score, na.rm=T),
+              sum.PSM.unordered.score <- sum(PSM.unordered.score, na.rm=T)) %>%
     mutate(prop.perfect.distractor.trials = n.perfect.distractor / n.trials,
            prop.perfect.recall.trials = n.perfect.recall / n.trials)
   
