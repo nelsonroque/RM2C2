@@ -94,5 +94,9 @@ score_span <- function(df, id_var, trial_var) {
   df <- df %>% rowwise() %>% mutate(prop.correct.recall.inorder = sum.recall.correct.insequence/set_size)
   df <- df %>% rowwise() %>% mutate(prop.correct.recall.anyorder = sum.recall.correct.thatexist/set_size)
   
+  # number of selection trail seperators
+  df <- df %>% rowwise() %>% mutate(n.selections = stringr::str_count(selection_trail, ">") + 1)
+  df <- df %>% rowwise() %>% mutate(n.selections.equals.set = ifelse(n.selections == set_size, 1, 0))
+  
   return(df)
 }
