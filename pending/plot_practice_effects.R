@@ -16,6 +16,7 @@ plot_practice_effect <- function(df = NA, filename = NA, y_var = NA, time_var = 
       group_by(idc, studyday) %>%
       summarise(m = mean(cs_pr, na.rm=T))
     
+    # draw plot
     p <- ggplot(temp.df, aes(studyday, m)) + 
       geom_point() +
       geom_smooth(method="lm") +
