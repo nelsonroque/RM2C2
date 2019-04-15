@@ -20,7 +20,7 @@
 
 #library(tidyverse)
 #library(readr)
-#devtools::install_github("nelsonroque/RM2C2", force=T)
+devtools::install_github("nelsonroque/RM2C2", force=T)
 library(RM2C2)
 #library(stringr)
 # ----------------------------------
@@ -103,6 +103,7 @@ a <- score_go_nogo(go_nogo)
 b <- summary_go_nogo(a, "user_id")
 # --------------------------------------------------------------------------
 rm(a); rm(b);
+change_detection <- read_csv("C:/Users/nur375/Box/Projects/status/current/RM2C2/data/parsed/gamedata_Change Detection_2019_3_11_10_54.txt")
 a <- score_change_detection(change_detection)
 b <- summary_change_detection(a, c("user_id","square_num"))
 # --------------------------------------------------------------------------
