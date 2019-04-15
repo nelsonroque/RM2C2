@@ -22,7 +22,8 @@ summary_change_detection <- function(df, group_var) {
            FA.rate = n.FA/n.nochange.trials) %>%
     mutate(MISS.rate = 1 - HIT.rate,
            CR.rate = 1 - FA.rate) %>%
-    SDT_adj(.)
+    SDT_adj(.) %>%
+    mutate(k.score = CorRec.rate * set_size)
   
   # add task name to column names
   len_group_var = length(group_var)
