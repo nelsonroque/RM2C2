@@ -16,12 +16,33 @@ score_dot_memory <- function(df, square_size=5) {
               .funs = funs(`1`=add_to(.,1))) %>%
     mutate_at(.vars = vars(dot1_rx_1:user_dot3_ry_1),
               .funs = funs(`coord`=mult_by(.,square_size))) %>%
-    mutate(r1_distance = distance(user_dot1_rx_1_coord, dot1_rx_1_coord,
+    mutate(r1_d1_distance = distance(user_dot1_rx_1_coord, dot1_rx_1_coord,
                                   user_dot1_ry_1_coord, dot1_ry_1_coord),
-           r2_distance = distance(user_dot2_rx_1_coord, dot2_rx_1_coord,
-                                  user_dot2_ry_1_coord, dot2_ry_1_coord),
-           r3_distance = distance(user_dot3_rx_1_coord, dot3_rx_1_coord,
-                                  user_dot3_ry_1_coord, dot3_ry_1_coord)) %>%
+           r1_d2_distance = distance(user_dot1_rx_1_coord, dot2_rx_1_coord,
+                                     user_dot1_ry_1_coord, dot2_ry_1_coord),
+           r1_d3_distance = distance(user_dot1_rx_1_coord, dot3_rx_1_coord,
+                                     user_dot1_ry_1_coord, dot3_ry_1_coord),
+           
+           r2_d1_distance = distance(user_dot2_rx_1_coord, dot1_rx_1_coord,
+                                     user_dot2_ry_1_coord, dot1_ry_1_coord),
+           r2_d2_distance = distance(user_dot2_rx_1_coord, dot2_rx_1_coord,
+                                     user_dot2_ry_1_coord, dot2_ry_1_coord),
+           r2_d3_distance = distance(user_dot2_rx_1_coord, dot3_rx_1_coord,
+                                     user_dot2_ry_1_coord, dot3_ry_1_coord),
+           
+           r3_d1_distance = distance(user_dot3_rx_1_coord, dot1_rx_1_coord,
+                                     user_dot3_ry_1_coord, dot1_ry_1_coord),
+           r3_d2_distance = distance(user_dot3_rx_1_coord, dot2_rx_1_coord,
+                                     user_dot3_ry_1_coord, dot2_ry_1_coord),
+           r3_d3_distance = distance(user_dot3_rx_1_coord, dot3_rx_1_coord,
+                                     user_dot3_ry_1_coord, dot3_ry_1_coord)) %>%
+    rowwise() %>%
+    mutate(r1_which = which.min(c(r1_d1_distance, r1_d2_distance, r1_d3_distance)),
+           r2_which = which.min(c(r2_d1_distance, r2_d2_distance, r2_d3_distance)),
+           r3_which = which.min(c(r3_d1_distance, r3_d2_distance, r3_d3_distance))) %>%
+    mutate(r1_distance = min(c(r1_d1_distance, r1_d2_distance, r1_d3_distance)),
+           r2_distance = min(c(r2_d1_distance, r2_d2_distance, r2_d3_distance)),
+           r3_distance = min(c(r3_d1_distance, r3_d2_distance, r3_d3_distance))) %>%
     mutate(r1_perfect = ifelse(r1_distance == 0, 1, 0),
            r2_perfect = ifelse(r2_distance == 0, 1, 0),
            r3_perfect = ifelse(r3_distance == 0, 1, 0),

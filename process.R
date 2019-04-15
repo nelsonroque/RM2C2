@@ -67,8 +67,9 @@ rspan <- read_ambcog(paste0(project.path,
 go_nogo <- read_ambcog(paste0(project.path,
                              "gamedata_Go No Go_2019_2_13_15_13.txt"))
 
-change_detection <- read_ambcog(paste0(project.path,
-                                      "gamedata_Change Detection_2019_2_13_15_13.txt"))
+na = "."
+change_detection <- read_ambcog(filepath=paste0(project.path,
+                                      "gamedata_Change Detection_2019_2_13_15_13.txt"), na=na)
 
 shopping_list <- read_ambcog(paste0(project.path,
                                    "gamedata_Shopping List_2019_2_24_18_35.txt"))
@@ -105,7 +106,7 @@ b <- summary_go_nogo(a, "user_id")
 rm(a); rm(b);
 change_detection <- read_csv("C:/Users/nur375/Box/Projects/status/current/RM2C2/data/parsed/gamedata_Change Detection_2019_3_11_10_54.txt")
 a <- score_change_detection(change_detection)
-b <- summary_change_detection(a, c("user_id","square_num"))
+b <- summary_change_detection(a, c("user_id","session","square_num"))
 # --------------------------------------------------------------------------
 rm(a); rm(b);
 a <- score_shopping_list(shopping_list)
