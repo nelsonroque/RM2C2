@@ -23,7 +23,7 @@ summary_change_detection <- function(df, group_var) {
     mutate(MISS.rate = 1 - HIT.rate,
            CR.rate = 1 - FA.rate) %>%
     SDT_adj(.) %>%
-    mutate(k.score = CorRec.rate * square_num)
+    mutate(k.score = CorRec.rate * square_num)  
   
   # add task name to column names
   len_group_var = length(group_var)
