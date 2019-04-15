@@ -14,6 +14,7 @@ SDT_adj <- function(df, adj=0.01) {
   down_adj = 0 + adj
   
   out.df <- df %>%
+    mutate(CorRec.rate = HIT.rate - FA.rate) %>%
     mutate(HIT.rate.adj = ifelse(HIT.rate == 1, up_adj, HIT.rate),
            FA.rate.adj = ifelse(FA.rate == 1, up_adj, FA.rate),
            MISS.rate.adj = ifelse(MISS.rate == 1, up_adj, MISS.rate),
