@@ -16,9 +16,9 @@ summary_ospan <- function(df, group_var) {
               n.perfect.distractor = sum(perfect.distractor.trial),
               n.perfect.recall = sum(perfect.recall.trial),
               n.trials = n(),
-              sum.FSM.score <- sum(FSM.score, na.rm=T),
-              sum.PSM.ordered.score <- sum(PSM.ordered.score, na.rm=T),
-              sum.PSM.unordered.score <- sum(PSM.unordered.score, na.rm=T)) %>%
+              sum.FSM.score = sum(FSM.score, na.rm=T),
+              sum.PSM.ordered.score = sum(PSM.ordered.score, na.rm=T),
+              sum.PSM.unordered.score = sum(PSM.unordered.score, na.rm=T)) %>%
     mutate(prop.perfect.distractor.trials = n.perfect.distractor / n.trials,
            prop.perfect.recall.trials = n.perfect.recall / n.trials)
   
