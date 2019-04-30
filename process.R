@@ -104,9 +104,14 @@ a <- score_go_nogo(go_nogo)
 b <- summary_go_nogo(a, "user_id")
 # --------------------------------------------------------------------------
 rm(a); rm(b);
-change_detection <- read_csv("C:/Users/nur375/Box/Projects/status/current/RM2C2/data/parsed/gamedata_Change Detection_2019_3_11_10_54.txt")
+na="."
+change_detection <- read_ambcog("C:/Users/nur375/Downloads/gamedata_Change Detection_2019_4_29_16_42.txt", na=na)
 a <- score_change_detection(change_detection)
-b <- summary_change_detection(a, c("user_id","session","square_num"))
+library(tidyr)
+b <- summary_change_detection(a, c("user_id","session","square_num")) %>% 
+  pivot_wider(names_from = c(user_id, session), 
+              values_from = c(CHANGE_DETECTION.median.RT.all_trials:CHANGE_DETECTION.k.score))
+
 # --------------------------------------------------------------------------
 rm(a); rm(b);
 a <- score_shopping_list(shopping_list)
