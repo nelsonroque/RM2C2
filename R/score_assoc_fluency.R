@@ -9,8 +9,14 @@ score_assoc_fluency <- function(df) {
   for(i in 1:max_size){
     varname <- paste0("is_entry", i)
     new_method <- paste0("ifelse(is.na(entry",i,"), 0, 1)")
-    print(new_method)
     df <- df %>% mutate_(.dots = setNames(new_method, varname))
   }
+  
+  # sum correct distractor responses
+  varname2 <- "total_entries"
+  new_method2 <- paste0("sum(",paste0("is_entry",set_seq, collapse=","), ",na.rm=T)")
+  
+  df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method2, varname2))
+
   return(df)
 }
