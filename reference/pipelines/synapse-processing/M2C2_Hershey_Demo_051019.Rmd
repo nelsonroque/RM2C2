@@ -1,0 +1,319 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+title: "M2C2 Link Survey + Cog"
+output: html_notebook
+---
+
+# R package: synapser (Sage Bionetworks R Interface)
+
+```{r}
+# install.packages("synapser", repos=c("https://sage-bionetworks.github.io/ran", "http://cran.fhcrc.org"))
+library(synapser)
+synLogin(email='nur375@psu.edu', password='', rememberMe=T)
+```
+
+# R Package: RM2C2
+
+```{r}
+# separate chunks to not have to run every time
+#devtools::install_github("nelsonroque/RM2C2", force=T)
+```
+
+```{r}
+# load library
+library(RM2C2)
+
+# setup script params
+options(useFancyQuotes = FALSE)
+```
+
+```{r}
+
+# will eventually go into RM2C2
+synapse_symbol_search <- function(synapseID = NA, record_UUIDs = NA) {
+  #VARS_NUM <- c()
+  
+  # build the query
+  base.query <- "select * from %s WHERE game_uuid IN (%s)"
+  uuid.query <- paste0(sQuote(record_UUIDs), collapse=",")
+  query <- sprintf(base.query, synapseID, uuid.query)
+  results <- synTableQuery(query)
+  
+  # get raw dataframe (not manipulated, just downloaded)
+  raw.df <- as.data.frame(results)
+  
+  # turn relevant columns (by name) to numeric
+  raw.numeric <- raw.df %>% mutate_at(vars("response_time"),as.numeric)
+  
+  # score
+  scored.df <- score_symbol_search(raw.numeric)
+  
+  # summarise for each person, and session
+  summary.df <- summary_symbol_search(scored.df, c("user_id","game_uuid"))
+  
+  return(list(scored=scored.df, summary=summary.df))
+}
+
+```
+
+
+
+```{r}
+
+# will eventually go into RM2C2
+synapse_color_dots <- function(synapseID = NA, record_UUIDs = NA) {
+  # build the query
+  base.query <- "select * from %s WHERE game_uuid IN (%s)"
+  uuid.query <- paste0(sQuote(record_UUIDs), collapse=",")
+  query <- sprintf(base.query, synapseID, uuid.query)
+  results <- synTableQuery(query)
+  
+  # get raw dataframe (not manipulated, just downloaded)
+  raw.df <- as.data.frame(results)
+  
+  # turn relevant columns (by name) to numeric
+  raw.numeric <- raw.df %>% mutate_at(vars("trial_num", "Col1", "Col2", "Col3", "ColorRT", "TotalColorPicks", "ProbedColor", "LocRT"),as.numeric)
+
+  # score
+  scored.df <- score_color_dots(raw.numeric)
+  
+  # summarise for each person, and session
+  summary.df <- summary_color_dots(scored.df, c("user_id","game_uuid"))
+  
+  return(list(scored=scored.df, summary=summary.df))
+}
+
+```
+
+
+```{r}
+
+# will eventually go into RM2C2
+synapse_dot_memory <- function(synapseID = NA, record_UUIDs = NA) {
+  # build the query
+  base.query <- "select * from %s WHERE game_uuid IN (%s)"
+  uuid.query <- paste0(sQuote(record_UUIDs), collapse=",")
+  query <- sprintf(base.query, synapseID, uuid.query)
+  results <- synTableQuery(query)
+  
+  # get raw dataframe (not manipulated, just downloaded)
+  raw.df <- as.data.frame(results)
+  
+  # turn relevant columns (by name) to numeric
+  raw.numeric <- raw.df %>% mutate_at(vars("trial_num", "response_time"), as.numeric)
+
+  # score
+  scored.df <- score_dot_memory(raw.numeric)
+  
+  # summarise for each person, and session
+  summary.df <- summary_dot_memory(scored.df, c("user_id","game_uuid"))
+  
+  return(list(scored=scored.df, summary=summary.df))
+}
+
+```
+
+
+# Iterate over M2C2 Project (`syn16804001`) tables
+
+```{r}
+project.id <- "syn16804001"
+
+iterator<-synGetChildren(project.id, includeTypes=list("folder", "file", "table", "link", "entityview", "dockerrepo"), sortBy="CREATED_ON")
+obj.list <- as.list(iterator)
+for(i in 1:length(obj.list)) {
+  table.name = obj.list[[i]]$name
+  table.id = obj.list[[i]]$id
+  print(paste(table.name,"--",table.id))
+}
+```
+
+# Load each survey
+
+```{r}
+
+# load survey + cog tasks 1
+cur.object.id <- "syn18634455"
+results.tmp <- synTableQuery(sprintf("select * from %s", cur.object.id))
+flight1.cog.df <- as.data.frame(results.tmp)
+
+# load survey + cog tasks 2
+cur.object.id <- "syn18634471"
+results.tmp <- synTableQuery(sprintf("select * from %s", cur.object.id))
+flight1.beep.df <- as.data.frame(results.tmp)
+
+```
+
+# For each survey, get vectors of cog task UUIDs
+
+```{r}
+
+# get unique UUIDs for each cog task
+flight1.cog.symbol_search.ids <- c(na.omit(unique(flight1.cog.df$symbol_cogtask_uuid)))
+flight1.cog.color_dots.ids <- c(na.omit(unique(flight1.cog.df$colordots_cogtask_uuid)))
+flight1.cog.dot_memory.ids <- c(na.omit(unique(flight1.cog.df$dotmem_cogtask_uuid)))
+
+# get unique UUIDs for each cog task
+flight1.beep.symbol_search.ids <- c(na.omit(unique(flight1.beep.df$symbol_cogtask_uuid)))
+flight1.beep.color_dots.ids <- c(na.omit(unique(flight1.beep.df$colordots_cogtask_uuid)))
+flight1.beep.dot_memory.ids <- c(na.omit(unique(flight1.beep.df$dotmem_cogtask_uuid)))
+
+```
+
+# Symbol Search: Download Score, Summarise
+
+```{r}
+ss.cog <- synapse_symbol_search(synapseID = "syn17083086", record_UUIDs = flight1.cog.symbol_search.ids)
+ss.beep <- synapse_symbol_search(synapseID = "syn17083086", record_UUIDs = flight1.beep.symbol_search.ids)
+
+```
+
+# Color Dots: Download Score, Summarise
+
+```{r}
+cd.cog <- synapse_color_dots(synapseID = "syn18357512", record_UUIDs = flight1.cog.color_dots.ids)
+cd.beep <- synapse_color_dots(synapseID = "syn18357512", record_UUIDs = flight1.beep.color_dots.ids)
+
+```
+
+# Dot Memory: Download Score, Summarise
+
+```{r}
+dm.cog <- synapse_dot_memory(synapseID = "syn17089698", record_UUIDs = flight1.cog.dot_memory.ids)
+dm.beep <- synapse_dot_memory(synapseID = "syn17089698", record_UUIDs = flight1.beep.dot_memory.ids)
+
+```
+
+# Combine survey with each cognitive task separately
+
+## SYMBOL SEARCH
+
+```{r}
+
+# Symbol Search
+flight1.cog.linkedw.symbol_search <- merge(flight1.cog.df, ss.cog$summary, 
+                   by.x=c("Participant_ID","symbol_cogtask_uuid"), 
+                   by.y=c("user_id","game_uuid"), 
+                   all=T)
+
+flight1.beep.linkedw.symbol_search <- merge(flight1.beep.df, ss.beep$summary, 
+                   by.x=c("Participant_ID","symbol_cogtask_uuid"), 
+                   by.y=c("user_id","game_uuid"), 
+                   all=T)
+
+# plot RT by distraction
+ggplot(flight1.cog.linkedw.symbol_search, aes(game_distract_during, SYMBOL_SEARCH.median.RT.error_trials)) + 
+  geom_boxplot() +
+  ylab("Median Response Time (ms)")
+
+ggplot(flight1.beep.linkedw.symbol_search, aes(game_distract_during, SYMBOL_SEARCH.median.RT.error_trials)) + 
+  geom_boxplot() +
+  ylab("Median Response Time (ms)")
+
+
+# individual data points
+ggplot(ss.beep$scored, 
+       aes(game_uuid, response_time, 
+           color=trial_type)) + 
+  geom_point() +
+  theme(axis.text.x = element_blank())
+
+# box plots
+ggplot(ss.beep$scored, 
+       aes(trial_type, response_time,
+           group=trial_type,
+           color=trial_type)) + 
+  geom_boxplot() +
+  facet_wrap(game_uuid ~ .)
+
+# individual data points
+ggplot(ss.cog$scored, 
+       aes(game_uuid, response_time, 
+           color=trial_type)) + 
+  geom_point() +
+  theme(axis.text.x = element_blank())
+
+# box plots
+ggplot(ss.cog$scored, 
+       aes(trial_type, response_time,
+           group=trial_type,
+           color=trial_type)) + 
+  geom_boxplot() +
+  facet_wrap(game_uuid ~ .)
+
+```
+
+## DOT MEMORY
+
+```{r}
+
+#  Dot Memory 
+flight1.cog.linkedw.dot_memory <- merge(flight1.cog.df, dm.cog$summary, 
+                   by.x=c("Participant_ID","dotmem_cogtask_uuid"), 
+                   by.y=c("user_id","game_uuid"), 
+                   all=T)
+
+flight1.beep.linkedw.dot_memory <- merge(flight1.beep.df, dm.beep$summary, 
+                   by.x=c("Participant_ID","dotmem_cogtask_uuid"), 
+                   by.y=c("user_id","game_uuid"), 
+                   all=T)
+
+# plot perfect trials by distraction
+ggplot(flight1.cog.linkedw.dot_memory, aes(game_distract_during, DOT_MEMORY.prop.perfect.trials)) + 
+  geom_boxplot() +
+  ylab("Proportion of Perfect Trials")
+
+# plot perfect trials by distraction
+ggplot(flight1.beep.linkedw.dot_memory, aes(game_distract_during, DOT_MEMORY.prop.perfect.trials)) + 
+  geom_boxplot() +
+  ylab("Proportion of Perfect Trials")
+
+
+```
+
+## COLOR DOTS
+
+```{r}
+
+#  Color Dots
+flight1.cog.linkedw.color_dots <- merge(flight1.cog.df, cd.cog$summary, 
+                   by.x=c("Participant_ID","colordots_cogtask_uuid"), 
+                   by.y=c("user_id","game_uuid"), 
+                   all=T)
+
+flight1.beep.linkedw.color_dots <- merge(flight1.beep.df, cd.beep$summary, 
+                   by.x=c("Participant_ID","colordots_cogtask_uuid"), 
+                   by.y=c("user_id","game_uuid"), 
+                   all=T)
+
+# plot RT by distraction
+ggplot(flight1.cog.linkedw.color_dots, aes(game_distract_during, COLOR_DOTS.stage1.swap.prop)) + 
+  geom_boxplot() +
+  ylab("Stage 1: swap proportion")
+
+ggplot(flight1.beep.linkedw.color_dots, aes(game_distract_during, COLOR_DOTS.stage1.swap.prop)) + 
+  geom_boxplot() +
+  ylab("Stage 1: swap proportion")
+
+```
+
+# Combine all datasets (survey + all cognitive tasks for a session)
+
+```{r}
+
+flight1.cog.survey.scoredcog <- bind_cols(flight1.cog.linkedw.color_dots , flight1.cog.linkedw.symbol_search, flight1.cog.linkedw.dot_memory)
+
+flight1.beep.survey.scoredcog <- bind_cols(flight1.beep.linkedw.color_dots , flight1.beep.linkedw.symbol_search, flight1.beep.linkedw.dot_memory)
+
+write.csv(flight1.cog.survey.scoredcog, "~/Github/tmp/M2C2_cog_scored.csv", row.names=F)
+
+write.csv(flight1.beep.survey.scoredcog, "~/Github/tmp/M2C2_beep_scored.csv", row.names=F)
+
+```
+
+```{r}
+library(dataMaid)
+makeDataReport(M2C2_beep_scored, replace=T, mode=c("summarize", "check"))
+```

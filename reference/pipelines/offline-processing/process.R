@@ -2,18 +2,6 @@
 # PENDING ITEMS
 # ===================================================================================
 
-# -------------------------------------------------
-# WISHLIST
-# -------------------------------------------------
-# - flagging for things, based on app events, device motion events (calls, texts, other)
-# - classify response order for span tasks
-
-# -------------------------------------------------
-# BY TASK
-# -------------------------------------------------
-# - Visual working memory: revise summary
-# - Motor Sequencing: revise summary
-
 # ----------------------------------
 # LOAD LIBS
 # ----------------------------------
