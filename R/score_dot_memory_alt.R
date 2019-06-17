@@ -36,15 +36,18 @@ score_dot_memory_alt <- function(df, square_size=5, n_dots=3) {
     mutate(r1_which_dot = which.min(c(r1_d1_distance, r1_d2_distance, r1_d3_distance)),
            r2_which_dot = which.min(c(r2_d1_distance, r2_d2_distance, r2_d3_distance)),
            r3_which_dot = which.min(c(r3_d1_distance, r3_d2_distance, r3_d3_distance))) %>%
+    rowwise() %>%
     mutate(r1_min_dist = min(c(r1_d1_distance, r1_d2_distance, r1_d3_distance)),
            r2_min_dist = min(c(r2_d1_distance, r2_d2_distance, r2_d3_distance)),
            r3_min_dist = min(c(r3_d1_distance, r3_d2_distance, r3_d3_distance))) %>%
+    rowwise() %>%
     mutate(r1_n_unique_distances = length(unique(c(r1_d1_distance, r1_d2_distance, r1_d3_distance))),
            r2_n_unique_distances = length(unique(c(r2_d1_distance, r2_d2_distance, r2_d3_distance))),
            r3_n_unique_distances = length(unique(c(r3_d1_distance, r3_d2_distance, r3_d3_distance)))) %>%
     mutate(r1_n_amb_dots = n_dots - r1_n_unique_distances,
            r2_n_amb_dots = n_dots - r2_n_unique_distances,
            r3_n_amb_dots = n_dots - r3_n_unique_distances) %>%
+    rowwise() %>%
     mutate(r1_n_at_min = length(which(c(r1_d1_distance, r1_d2_distance, r1_d3_distance) == min(c(r1_d1_distance, r1_d2_distance, r1_d3_distance)))),
            r2_n_at_min = length(which(c(r2_d1_distance, r2_d2_distance, r2_d3_distance) == min(c(r2_d1_distance, r2_d2_distance, r2_d3_distance)))),
            r3_n_at_min = length(which(c(r3_d1_distance, r3_d2_distance, r3_d3_distance) == min(c(r3_d1_distance, r3_d2_distance, r3_d3_distance))))) %>%
@@ -52,6 +55,7 @@ score_dot_memory_alt <- function(df, square_size=5, n_dots=3) {
            r2_perfect = ifelse(r2_min_dist == 0, 1, 0),
            r3_perfect = ifelse(r3_min_dist == 0, 1, 0),
            is_perfect_trial = ifelse(r1_min_dist == 0 & r2_min_dist == 0 & r3_min_dist == 0,1,0)) %>%
+    rowwise() %>%
     mutate(sum_perfect_dots = sum(c(r1_perfect, r2_perfect, r3_perfect))) %>%
     mutate(prop_perfect_dots = sum_perfect_dots / n_dots) %>%
     rowwise() %>%
