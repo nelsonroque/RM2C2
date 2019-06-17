@@ -53,6 +53,7 @@ score_dot_memory_alt <- function(df, square_size=5, n_dots=3) {
            r3_perfect = ifelse(r3_min_dist == 0, 1, 0),
            is_perfect_trial = ifelse(r1_min_dist == 0 & r2_min_dist == 0 & r3_min_dist == 0,1,0)) %>%
     mutate(sum_perfect_dots = sum(c(r1_perfect, r2_perfect, r3_perfect))) %>%
+    mutate(prop_perfect_dots = sum_perfect_dots / n_dots) %>%
     rowwise() %>%
     mutate(hausdorff_distance = pracma::hausdorff_dist(matrix(c(dot1_rx, dot1_ry,
                                                                         dot2_rx, dot2_ry,
