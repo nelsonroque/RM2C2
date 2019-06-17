@@ -52,6 +52,7 @@ score_dot_memory_alt <- function(df, square_size=5, n_dots=3) {
            r2_perfect = ifelse(r2_min_dist == 0, 1, 0),
            r3_perfect = ifelse(r3_min_dist == 0, 1, 0),
            is_perfect_trial = ifelse(r1_min_dist == 0 & r2_min_dist == 0 & r3_min_dist == 0,1,0)) %>%
+    mutate(sum_perfect_dots = sum(c(r1_perfect, r2_perfect, r3_perfect))) %>%
     rowwise() %>%
     mutate(hausdorff_distance = pracma::hausdorff_dist(matrix(c(dot1_rx, dot1_ry,
                                                                         dot2_rx, dot2_ry,
@@ -59,8 +60,7 @@ score_dot_memory_alt <- function(df, square_size=5, n_dots=3) {
                                                                matrix(c(user_dot1_rx, user_dot1_ry,
                                                                         user_dot2_rx, user_dot2_ry,
                                                                         user_dot3_rx, user_dot3_ry), ncol=2, nrow=3, byrow=T))) %>%
-    mutate(sum_perfect_dots = sum(c(r1_perfect, r2_perfect, r3_perfect)),
-           median_error_distance = median(r1_min_dist, r2_min_dist, r3_min_dist),
+    mutate(median_error_distance = median(r1_min_dist, r2_min_dist, r3_min_dist),
            sum_error_distance = sum(r1_min_dist, r2_min_dist, r3_min_dist),
            n_ambiguous_responses = sum(r1_n_amb_dots, r2_n_amb_dots, r3_n_amb_dots)) %>%
     mutate(prop_ambiguous_responses = n_ambiguous_responses / n_dots) %>%
