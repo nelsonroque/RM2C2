@@ -61,7 +61,8 @@ score_dot_memory_alt <- function(df, square_size=5, n_dots=3) {
                                                                matrix(c(user_dot1_rx, user_dot1_ry,
                                                                         user_dot2_rx, user_dot2_ry,
                                                                         user_dot3_rx, user_dot3_ry), ncol=2, nrow=3, byrow=T))) %>%
-    mutate(median_error_distance = median(r1_min_dist, r2_min_dist, r3_min_dist),
+    mutate(min_error_distance = min(r1_min_dist, r2_min_dist, r3_min_dist),
+           mean_error_distance = mean(r1_min_dist, r2_min_dist, r3_min_dist),
            sum_error_distance = sum(r1_min_dist, r2_min_dist, r3_min_dist),
            n_ambiguous_responses = sum(r1_n_amb_dots, r2_n_amb_dots, r3_n_amb_dots)) %>%
     mutate(prop_ambiguous_responses = n_ambiguous_responses / n_dots) %>%
