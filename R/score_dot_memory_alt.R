@@ -3,7 +3,7 @@
 #' @name score_dot_memory_alt
 #' @export
 score_dot_memory_alt <- function(df, square_size=5, n_dots=3) {
-  APK.VERSION <- "CHECK_CHANGELOG"
+  APK.VERSION <- "version:1.0|candidate:D|after:03_18_2018"
   scored <- df %>% 
     separate(dot_locations, c("dot1","dot2","dot3"), " ", convert=T) %>%
     separate(dot1, c("dot1_rx", "dot1_ry"), "_", convert=T) %>%
