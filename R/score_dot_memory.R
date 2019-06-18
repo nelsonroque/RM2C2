@@ -3,6 +3,7 @@
 #' @name score_dot_memory
 #' @export
 score_dot_memory <- function(df, square_size=5) {
+  APK.VERSION <- "CHECK_CHANGELOG"
   scored <- df %>% 
     separate(dot_locations, c("dot1","dot2","dot3"), " ", convert=T) %>%
     separate(dot1, c("dot1_rx", "dot1_ry"), "_", convert=T) %>%
@@ -50,7 +51,8 @@ score_dot_memory <- function(df, square_size=5) {
     rowwise() %>%
     mutate(sum_perfect_dots = sum(c(r1_perfect, r2_perfect, r3_perfect)),
            median_error_distance = median(c(r1_distance, r2_distance, r3_distance)),
-           sum_error_distance = sum(c(r1_distance, r2_distance, r3_distance)))
+           sum_error_distance = sum(c(r1_distance, r2_distance, r3_distance))) %>%
+    mutate(scoring_script_apk_match = APK.VERSION)
     
   return(scored)
 }
