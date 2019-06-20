@@ -3,6 +3,7 @@
 #' @name summary_quick_tapping
 #' @export
 summary_quick_tapping <- function(df, group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME <- "QUICK_TAPPING"
   
   summary.df <- df %>%
@@ -67,6 +68,8 @@ summary_quick_tapping <- function(df, group_var) {
   names(summary.df)[(len_group_var+1):ncol(summary.df)] <- paste0(TASK_NAME,".",names(summary.df)[(len_group_var+1):ncol(summary.df)])
   names(summary2.df)[(len_group_var+1):ncol(summary2.df)] <- paste0(TASK_NAME,".",names(summary2.df)[(len_group_var+1):ncol(summary2.df)])
   
-  final.df <- merge(summary.df,summary2.df)
+  final.df <- merge(summary.df,summary2.df)  %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
   return(final.df)
 }

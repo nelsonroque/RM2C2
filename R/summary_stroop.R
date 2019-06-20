@@ -3,6 +3,7 @@
 #' @name summary_stroop
 #' @export
 summary_stroop <- function(df, group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME <- "STROOP"
   summary.df <- df %>%
     group_by_(.dots = group_var) %>%
@@ -108,7 +109,9 @@ summary_stroop <- function(df, group_var) {
            prop.IC.correct = n.IC.correct/n.IC) %>%
     mutate(conflict.adaptation.effect.median = (median.RT.II.accurate.trials - median.RT.CI.accurate.trials) - (median.RT.CC.accurate.trials - median.RT.IC.accurate.trials),
            conflict.adaptation.effect.mean = (mean.RT.II.accurate.trials - mean.RT.CI.accurate.trials) - (mean.RT.CC.accurate.trials - mean.RT.IC.accurate.trials),
-           conflict.adaptation.effect.sd = (sd.RT.II.accurate.trials - sd.RT.CI.accurate.trials) - (sd.RT.CC.accurate.trials - sd.RT.IC.accurate.trials))
+           conflict.adaptation.effect.sd = (sd.RT.II.accurate.trials - sd.RT.CI.accurate.trials) - (sd.RT.CC.accurate.trials - sd.RT.IC.accurate.trials)) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
   
   # add task name to column names
   len_group_var = length(group_var)

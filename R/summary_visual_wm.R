@@ -3,6 +3,7 @@
 #' @name summary_visual_wm
 #' @export
 summary_visual_wm <- function(df, group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME <- "VISUAL_WM"
   summary.df <- df %>%
     group_by_(.dots = group_var) %>%
@@ -29,6 +30,12 @@ summary_visual_wm <- function(df, group_var) {
               n.multiple_choice_3opt_trials = sum(response_type == "MULTI_CHOICE_3"),
               n.free_rotate_trials = sum(response_type == "FREE_ROTATE"),
               n.trials = n()) %>%
-    mutate(prop.multiple_choice.correct = n.multiple_choice_correct / n.multiple_choice_trials)
+    mutate(prop.multiple_choice.correct = n.multiple_choice_correct / n.multiple_choice_trials) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
+  # add task name to column names
+  len_group_var = length(group_var)
+  names(summary.df)[(len_group_var+1):ncol(summary.df)] <- paste0(TASK_NAME,".",names(summary.df)[(len_group_var+1):ncol(summary.df)])
+  return(summary.df)
 }
 

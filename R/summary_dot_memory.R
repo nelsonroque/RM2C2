@@ -3,6 +3,7 @@
 #' @name summary_dot_memory
 #' @export
 summary_dot_memory <- function(df, group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME <- "DOT_MEMORY"
   summary.df <- df %>%
     group_by_(.dots = group_var) %>%
@@ -24,7 +25,9 @@ summary_dot_memory <- function(df, group_var) {
               count.perfect.trials = sum(perfect_response, na.rm=T),
               n.filtered.trials = sum(is.na(response_time)),
               n.trials = n()) %>%
-    mutate(prop.perfect.trials = count.perfect.trials/n.trials)
+    mutate(prop.perfect.trials = count.perfect.trials/n.trials) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
   
   # add task name to column names 
   len_group_var = length(group_var)

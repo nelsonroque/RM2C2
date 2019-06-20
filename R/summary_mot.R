@@ -3,6 +3,7 @@
 #' @name summary_mot
 #' @export
 summary_mot <- function(df, group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME <- "MOT"
   summary.df <- df %>%
     group_by(.dots = c(group_var)) %>%
@@ -25,7 +26,9 @@ summary_mot <- function(df, group_var) {
               mean.cue_after_time_deviance = mean(cue_after_time_deviance, na.rm=T),
               
               mean.movement_time_deviance = mean(movement_time_deviance, na.rm=T)) %>%
-    mutate(prop.perfect.trials = n.perfect.trials / n.trials)
+    mutate(prop.perfect.trials = n.perfect.trials / n.trials) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
     
   # add task name to column names
   len_group_var = length(group_var)

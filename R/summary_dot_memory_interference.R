@@ -3,6 +3,7 @@
 #' @name summary_dot_memory_interference
 #' @export
 summary_dot_memory_interference <- function(df, group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME <- "DOT_MEMORY_INTERFERENCE"
   
   summary.df <- df %>%
@@ -10,7 +11,9 @@ summary_dot_memory_interference <- function(df, group_var) {
     summarise(n.correct.taps = sum(tap_correct[tap_correct == 1]),
               n.total.taps = n()) %>%
     mutate(n.incorrect.taps = n.total.taps - n.correct.taps) %>%
-    select(user_id, n.total.taps, n.correct.taps, n.incorrect.taps)
+    select(user_id, n.total.taps, n.correct.taps, n.incorrect.taps) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
   
   # add task name to column names
   len_group_var = length(group_var)

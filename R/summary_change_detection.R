@@ -3,6 +3,7 @@
 #' @name summary_change_detection
 #' @export
 summary_change_detection <- function(df, group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME = "CHANGE_DETECTION"
   summary.df <- df %>%
     group_by_(.dots = group_var) %>%
@@ -23,7 +24,9 @@ summary_change_detection <- function(df, group_var) {
     mutate(MISS.rate = 1 - HIT.rate,
            CR.rate = 1 - FA.rate) %>%
     SDT_adj(.) %>%
-    mutate(k.score = CorRec.rate * square_num)  
+    mutate(k.score = CorRec.rate * square_num)  %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
   
   # add task name to column names
   len_group_var = length(group_var)

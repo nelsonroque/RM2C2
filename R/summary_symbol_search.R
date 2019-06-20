@@ -3,6 +3,7 @@
 #' @name summary_symbol_search
 #' @export
 summary_symbol_search <- function(df, group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME <- "SYMBOL_SEARCH"
   summary.df <- df %>%
     group_by_(.dots = group_var) %>%
@@ -24,7 +25,9 @@ summary_symbol_search <- function(df, group_var) {
               n.error.trials = n() - sum(accuracy),
               n.lure.trials = sum(trial_type == "LURE"),
               n.normal.trials = sum(trial_type == "NORMAL"),
-              n.trials = n())
+              n.trials = n()) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
   
   # add task name to column names
   len_group_var = length(group_var)

@@ -3,6 +3,7 @@
 #' @name summary_ufov
 #' @export
 summary_ufov <- function(df, group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME <- "UFOV"
   summary.df <- df %>%
     group_by(.dots = c(group_var,'central_image_category', 'param_target_disp_time')) %>%
@@ -31,7 +32,9 @@ summary_ufov <- function(df, group_var) {
               n.central_timeout.trials = sum((did_central_response_timeout == 1)),
               n.peripheral_timeout.trials = sum((did_peripheral_response_timeout == 1)),
               n.trials = n()) %>%
-    mutate(ratio.count.peripheral.down_up.responses = sum.peripheral.down_responses/sum.peripheral.up_responses)
+    mutate(ratio.count.peripheral.down_up.responses = sum.peripheral.down_responses/sum.peripheral.up_responses) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
     
   # add task name to column names
   len_group_var = length(group_var)

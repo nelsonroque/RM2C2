@@ -3,6 +3,7 @@
 #' @name summary_shopping_list
 #' @export
 summary_shopping_list <- function(df, group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME = "SHOPPING_LIST"
   summary.df <- df %>%
     group_by_(.dots = group_var) %>%
@@ -22,7 +23,9 @@ summary_shopping_list <- function(df, group_var) {
             n.incorrect = sum(correct == 0 & phase == 2),
             n = max(trial_num[phase == 2])) %>%
     mutate(prop.correct = n.correct/n,
-           prop.incorrect = n.incorrect/n)
+           prop.incorrect = n.incorrect/n) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
 
   # add task name to column names
   len_group_var = length(group_var)

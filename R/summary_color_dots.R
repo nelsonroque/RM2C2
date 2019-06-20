@@ -3,6 +3,7 @@
 #' @name summary_color_dots
 #' @export
 summary_color_dots <- function(df, group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME <- "COLOR_DOTS"
   summary.df <- df %>%
     group_by_(.dots = group_var) %>%
@@ -41,7 +42,9 @@ summary_color_dots <- function(df, group_var) {
            stage2.random.prop = stage2.random.count / n,
            
            stage1.correct.prop = stage1.correct.count / n,
-           stage2.correct.prop = stage2.correct.count / n)
+           stage2.correct.prop = stage2.correct.count / n) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
   
   # add task name to column names
   len_group_var = length(group_var)

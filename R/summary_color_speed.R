@@ -3,6 +3,7 @@
 #' @name summary_color_speed
 #' @export
 summary_color_speed <- function(df, group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME <- "COLOR_SPEED"
   summary.df <- df %>%
     group_by_(.dots = group_var) %>%
@@ -21,7 +22,9 @@ summary_color_speed <- function(df, group_var) {
               n.location.accurate.trials = n() - sum(is_location_response_outbounds),
               n.location.error.trials = sum(is_location_response_outbounds),
               
-              n.trials = n())
+              n.trials = n()) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
   
   # add task name to column names
   len_group_var = length(group_var)

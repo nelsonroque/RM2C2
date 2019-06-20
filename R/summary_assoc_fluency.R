@@ -3,10 +3,13 @@
 #' @name summary_assoc_fluency
 #' @export
 summary_assoc_fluency <- function(df, group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME <- "ASSOCIATIONAL_FLUENCY"
   summary.df <- df %>%
     group_by_(.dots = group_var) %>%
-    summarise(total_entries = sum(total_entries))
+    summarise(total_entries = sum(total_entries)) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
 
   # add task name to column names
   len_group_var = length(group_var)

@@ -3,6 +3,7 @@
 #' @name summary_go_nogo
 #' @export
 summary_go_nogo <- function(df, group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME <- "GO_NOGO"
   summary.df <- df %>%
     group_by_(.dots = group_var) %>%
@@ -22,7 +23,9 @@ summary_go_nogo <- function(df, group_var) {
            FA.rate = n.FA/n.nogo.frames) %>%
     mutate(MISS.rate = 1 - HIT.rate,
            CR.rate = 1 - FA.rate) %>%
-    SDT_adj(.)
+    SDT_adj(.) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
   
     # add task name to column names
     len_group_var = length(group_var)

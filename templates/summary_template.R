@@ -3,10 +3,12 @@
 #' @name summary_
 #' @export
 summary_ <- function(df, group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME <- "TASK_NAME"
   summary.df <- df %>%
     group_by(.dots = c(group_var)) %>%
-    summarise(n.trials = n())
+    summarise(n.trials = n()) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
     
   # add task name to column names
   len_group_var = length(group_var)

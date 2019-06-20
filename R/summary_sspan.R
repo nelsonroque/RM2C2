@@ -3,6 +3,7 @@
 #' @name summary_sspan
 #' @export
 summary_sspan <- function(df, group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME <- "SSPAN"
   summary.df <- df %>%
     group_by_(.dots = group_var) %>%
@@ -20,7 +21,9 @@ summary_sspan <- function(df, group_var) {
               sum.PSM.ordered.score = sum(PSM.ordered.score, na.rm=T),
               sum.PSM.unordered.score = sum(PSM.unordered.score, na.rm=T)) %>%
     mutate(prop.perfect.distractor.trials = n.perfect.distractor / n.trials,
-           prop.perfect.recall.trials = n.perfect.recall / n.trials)
+           prop.perfect.recall.trials = n.perfect.recall / n.trials) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
   
   # add task name to column names
   len_group_var = length(group_var)

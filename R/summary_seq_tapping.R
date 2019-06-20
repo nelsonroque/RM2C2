@@ -3,6 +3,7 @@
 #' @name summary_seq_tapping
 #' @export
 summary_seq_tapping <- function(df, group_var, nontap_cols = c(1:24)) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME <- "SEQUENCE_TAPPING"
   
   summary.df <- df %>%
@@ -52,6 +53,8 @@ summary_seq_tapping <- function(df, group_var, nontap_cols = c(1:24)) {
   names(summary.df)[(len_group_var+1):ncol(summary.df)] <- paste0(TASK_NAME,".",names(summary.df)[(len_group_var+1):ncol(summary.df)])
   names(summary2.df)[(len_group_var+1):ncol(summary2.df)] <- paste0(TASK_NAME,".",names(summary2.df)[(len_group_var+1):ncol(summary2.df)])
   
-  final.df <- merge(summary.df,summary2.df)
+  final.df <- merge(summary.df,summary2.df) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
   return(final.df)
 }

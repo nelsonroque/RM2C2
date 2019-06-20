@@ -3,6 +3,7 @@
 #' @name summary_color_shapes
 #' @export
 summary_color_shapes <- function(df,group_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME <- "COLOR_SHAPES"
   summary.df <- df %>%
     group_by_(.dots = group_var) %>%
@@ -28,7 +29,9 @@ summary_color_shapes <- function(df,group_var) {
            FA.rate = n.FA/n.no_change.trials) %>%
     mutate(MISS.rate = 1 - HIT.rate,
            CR.rate = 1 - FA.rate) %>%
-    SDT_adj(.)
+    SDT_adj(.) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
   
   # add task name to column names
   len_group_var = length(group_var)
