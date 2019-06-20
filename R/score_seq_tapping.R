@@ -3,6 +3,7 @@
 #' @name score_seq_tapping
 #' @export
 score_seq_tapping <- function(df, t_lag=3){
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   scored <- df %>%
     mutate(correct_ordering = gsub("-", "", correct_order),
            response_order = gsub("-", "", gsub("OB", "", gsub("T","",gsub("HOME","",tap_sequence)))),
@@ -25,6 +26,7 @@ score_seq_tapping <- function(df, t_lag=3){
            distance.from.target7 = distance(tap_x, target7_center_x, tap_y, target7_center_y)) %>%
     group_by(user_id,game_uuid,trial_num) %>%
     mutate(velocity = as.numeric(as.character(a)) - lag(as.numeric(as.character(a)), n=t_lag)) %>%
-    mutate(acceleration = as.numeric(as.character(velocity)) - lag(as.numeric(as.character(velocity)), n=t_lag))
+    mutate(acceleration = as.numeric(as.character(velocity)) - lag(as.numeric(as.character(velocity)), n=t_lag)) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
   return(scored)
 }

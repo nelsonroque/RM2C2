@@ -3,6 +3,7 @@
 #' @name score_dot_memory_alt
 #' @export
 score_dot_memory_alt <- function(df, square_size=5, n_dots=3) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   APK.VERSION <- "version:1.0|candidate:D|after:03_18_2018|commit_id:f8d4de974b5bebfa32d72382ac81911b950b4b75"
   scored <- df %>% 
     separate(dot_locations, c("dot1","dot2","dot3"), " ", convert=T) %>%
@@ -72,7 +73,8 @@ score_dot_memory_alt <- function(df, square_size=5, n_dots=3) {
            n_ambiguous_responses = sum(r1_n_amb_dots, r2_n_amb_dots, r3_n_amb_dots)) %>%
     mutate(prop_ambiguous_responses = n_ambiguous_responses / n_dots) %>%
     mutate(sum_error_distance_adj_ambiguous = sum_error_distance / (1 - prop_ambiguous_responses)) %>%
-    mutate(scoring_script_apk_match = APK.VERSION)
+    mutate(scoring_script_apk_match = APK.VERSION,
+           PACKAGE.VERSION = PACKAGE.VERSION)
     
   return(scored)
 }

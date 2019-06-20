@@ -3,6 +3,7 @@
 #' @name score_mot
 #' @export
 score_mot <- function(df) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   scored <- df %>%
     mutate(cue_before_time_deviance = t_cueBeforeTime - a_cueBeforeTime,
            cue_blink_time_deviance = t_cueBlinkTime - a_cueBlinkTime,
@@ -14,6 +15,7 @@ score_mot <- function(df) {
     mutate(n.total.selections = length(sapply(strsplit(unlist(strsplit(selected_stim_list, " ")), "_"), `[`, 4)),
            n.correct.selections = sum(as.numeric(sapply(strsplit(unlist(strsplit(selected_stim_list, " ")), "_"), `[`, 4)))) %>%
     mutate(prop.correct.selections = n.correct.selections / n.total.selections) %>%
-    mutate(perfect_trial = ifelse(target_num == n.correct.selections, 1, 0))
+    mutate(perfect_trial = ifelse(target_num == n.correct.selections, 1, 0)) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
   return(scored)
 }

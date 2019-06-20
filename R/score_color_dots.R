@@ -3,6 +3,7 @@
 #' @name score_color_dots
 #' @export
 score_color_dots <- function(df, threshold=75){
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   scored <- df %>%
     separate(Loc1, into=c("Loc1_x", "Loc1_y"), " ", convert=T) %>%
     separate(Loc2, into=c("Loc2_x", "Loc2_y"), " ", convert=T) %>%
@@ -65,7 +66,8 @@ score_color_dots <- function(df, threshold=75){
            stage2.is.response.distance.near.location.unprobed = ifelse(stage2.distance.from.location.unprobed <= threshold, 1, 0)) %>%
     mutate(stage2.classification = ifelse(stage2.is.response.distance.near.color.probe == 1 & stage2.is.response.distance.near.location.probe == 0, "CORRECT",
                                    ifelse(stage2.is.response.distance.near.color.probe == 0 & stage2.is.response.distance.near.location.probe == 1, "SWAP",
-                                   ifelse(stage2.is.response.distance.near.color.probe == 0 & stage2.is.response.distance.near.location.probe == 0, "RANDOM", NA))))
+                                   ifelse(stage2.is.response.distance.near.color.probe == 0 & stage2.is.response.distance.near.location.probe == 0, "RANDOM", NA)))) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
 
     
     return(scored)

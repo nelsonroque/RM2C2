@@ -3,6 +3,7 @@
 #' @name score_assoc_fluency
 #' @export
 score_assoc_fluency <- function(df) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   max_size <- get_max_col(df, colstring="entry")
   set_seq <- seq(1,max_size,1)
   
@@ -17,6 +18,9 @@ score_assoc_fluency <- function(df) {
   new_method2 <- paste0("sum(",paste0("is_entry",set_seq, collapse=","), ",na.rm=T)")
   
   df <- df %>% rowwise() %>% mutate_(.dots = set_names(new_method2, varname2))
+  
+  scored <-  df %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
 
-  return(df)
+  return(scored)
 }

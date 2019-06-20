@@ -3,6 +3,7 @@
 #' @name score_dot_memory
 #' @export
 score_dot_memory <- function(df, square_size=5) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   APK.VERSION <- "version:1.0|candidate:D|after:03_18_2018|commit_id:f8d4de974b5bebfa32d72382ac81911b950b4b75"
   scored <- df %>% 
     separate(dot_locations, c("dot1","dot2","dot3"), " ", convert=T) %>%
@@ -52,7 +53,8 @@ score_dot_memory <- function(df, square_size=5) {
     mutate(sum_perfect_dots = sum(c(r1_perfect, r2_perfect, r3_perfect)),
            median_error_distance = median(c(r1_distance, r2_distance, r3_distance)),
            sum_error_distance = sum(c(r1_distance, r2_distance, r3_distance))) %>%
-    mutate(scoring_script_apk_match = APK.VERSION)
+    mutate(scoring_script_apk_match = APK.VERSION) %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
     
   return(scored)
 }

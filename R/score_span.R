@@ -3,6 +3,7 @@
 #' @name score_span
 #' @export
 score_span <- function(df, id_var, trial_var) {
+  PACKAGE.VERSION <- packageVersion("RM2C2")
   
   # calculate max set size from column names in parsed data -----
   # ............................................................
@@ -98,5 +99,8 @@ score_span <- function(df, id_var, trial_var) {
   df <- df %>% rowwise() %>% mutate(n.selections = stringr::str_count(selection_trail, ">") + 1)
   df <- df %>% rowwise() %>% mutate(n.selections.equals.set = ifelse(n.selections == set_size, 1, 0))
   
-  return(df)
+  scored <- df  %>%
+    mutate(PACKAGE.VERSION = PACKAGE.VERSION)
+  
+  return(scored)
 }
