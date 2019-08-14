@@ -107,6 +107,8 @@ build_pack_tag <- function(root, pack, pack_tag, game_tag, screen_tag, nextscree
                      CueAfterTime="500", 
                      CueShowTime="500") %>%
               select(-blocks, -trials, -game_name, -game_blocks, -game_trials)
+            
+            
           } else {
             if(tolower(cur_game_meta1$name) == "dotmemory"){
               cur_game_meta_f <- cur_game_meta1 %>%
@@ -130,7 +132,7 @@ build_pack_tag <- function(root, pack, pack_tag, game_tag, screen_tag, nextscree
                          Test1DisplayHold="1000") %>%
                   select(-blocks, -trials, -game_name, -game_blocks, -game_trials)
               } else {
-                if(tolower(cur_game_meta1$name) == "symbolsearch"){
+                if(tolower(cur_game_meta1$name) == "symbolsearch" | tolower(cur_game_meta1$name) == "symbolmatch"){
                   cur_game_meta_f <- cur_game_meta1 %>%
                     mutate(InstructionScreen="true",
                            Feedback="0",
