@@ -23,9 +23,6 @@ generate_study_xml <- function(input_file, project_name, verbose=T) {
   branch_tag <- "branch"
   option_tag <- "option"
   
-  # input Excel Workbook
-  input_file <- "survey_data_demo_wgames.xlsx"
-  
   # create output file
   SESSION_STAMP = format(Sys.time(), "%Y%m%d_%H%M%S")
   output_file <- paste0(project_name, "_", SESSION_STAMP, ".xml")
