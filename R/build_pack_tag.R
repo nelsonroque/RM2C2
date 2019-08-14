@@ -131,6 +131,10 @@ build_pack_tag <- function(root, pack, pack_tag, game_tag, screen_tag, nextscree
                        InterferenceSize="50",
                        TrialNum = trials) %>%
                 select(-blocks, -trials, -game_name, -game_blocks, -game_trials)
+              
+              # add attributes
+              xmlAttrs(game_node) = cur_game_meta_f
+              
             } else {
               if(tolower(cur_game_meta1$name) == "colordots"){
                 cur_game_meta_f <- cur_game_meta1 %>%
