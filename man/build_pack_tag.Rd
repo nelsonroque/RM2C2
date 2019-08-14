@@ -4,8 +4,8 @@
 \alias{build_pack_tag}
 \title{RM2C2: Scoring, Summarizing}
 \usage{
-build_pack_tag(root, pack, pack_tag, game_tag, screen_tag, element_tag,
-  option_tag)
+build_pack_tag(root, pack, pack_tag, game_tag, screen_tag, nextscreen_tag,
+  element_tag, option_tag)
 }
 \description{
 RM2C2: Scoring, Summarizing

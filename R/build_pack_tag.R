@@ -5,7 +5,7 @@
 #' @examples
 #' build_pack_tag(df, root_tag)
 #' @export
-build_pack_tag <- function(root, pack, pack_tag, game_tag, screen_tag, element_tag, option_tag) {
+build_pack_tag <- function(root, pack, pack_tag, game_tag, screen_tag, nextscreen_tag, element_tag, option_tag) {
   
   # pack list
   packing_list = split(pack, pack$pack_id)

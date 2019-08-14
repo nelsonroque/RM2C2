@@ -50,7 +50,7 @@ generate_study_xml <- function(input_file, project_name, verbose=T) {
   doc_root_menu <- build_menu_tag(doc_root, menu, menu_tag, title_tag, element_tag, action_tag)
   
   # step 3) build pack
-  doc_root_menu_pack <- build_pack_tag(doc_root, pack, pack_tag, game_tag, screen_tag, element_tag, option_tag)
+  doc_root_menu_pack <- build_pack_tag(doc_root, pack, pack_tag, game_tag, screen_tag, nextscreen_tag, element_tag, option_tag)
   
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   # VIEW FINAL XML
