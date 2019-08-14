@@ -108,6 +108,15 @@ build_pack_tag <- function(root, pack, pack_tag, game_tag, screen_tag, nextscree
                      CueShowTime="500") %>%
               select(-blocks, -trials, -game_name, -game_blocks, -game_trials)
             
+            # add attributes
+            xmlAttrs(game_node) = cur_game_meta_f
+            
+            # # add blank blocks and trial sets
+            block_node = newXMLNode("Block", parent=game_node)
+            
+            trial_node = newXMLNode("TrialSet", parent=block_node)
+            
+            xmlAttrs(trial_node) = cur_game_meta1 %>% mutate(TrialNum = trials) %>% select(TrialNum)
             
           } else {
             if(tolower(cur_game_meta1$name) == "dotmemory"){
@@ -119,7 +128,8 @@ build_pack_tag <- function(root, pack, pack_tag, game_tag, screen_tag, nextscree
                        ShowDelayTime="100" ,
                        InterferenceZip="dm_easy.zip", 
                        InterferenceText="Touch the Stars!",
-                       InterferenceSize="50") %>%
+                       InterferenceSize="50",
+                       TrialNum = trials) %>%
                 select(-blocks, -trials, -game_name, -game_blocks, -game_trials)
             } else {
               if(tolower(cur_game_meta1$name) == "colordots"){
@@ -129,8 +139,13 @@ build_pack_tag <- function(root, pack, pack_tag, game_tag, screen_tag, nextscree
                          DelayTime="750",
                          DotNum="3",
                          Test1Mode="1",
-                         Test1DisplayHold="1000") %>%
+                         Test1DisplayHold="1000",
+                         TrialNum = trials) %>%
                   select(-blocks, -trials, -game_name, -game_blocks, -game_trials)
+                
+                # add attributes
+                xmlAttrs(game_node) = cur_game_meta_f
+                
               } else {
                 if(tolower(cur_game_meta1$name) == "symbolsearch" | tolower(cur_game_meta1$name) == "symbolmatch"){
                   cur_game_meta_f <- cur_game_meta1 %>%
@@ -140,8 +155,13 @@ build_pack_tag <- function(root, pack, pack_tag, game_tag, screen_tag, nextscree
                            LeftCorrectPerc="50",
                            FeedbackDelay="500",
                            StartDelay="1000",
-                           MatchPairsTop="2") %>%
+                           MatchPairsTop="2",
+                           TrialNum = trials) %>%
                     select(-blocks, -trials, -game_name, -game_blocks, -game_trials)
+                  
+                  # add attributes
+                  xmlAttrs(game_node) = cur_game_meta_f
+                  
                 } else {
                   if(tolower(cur_game_meta1$name) == "shoppinglist"){
                     cur_game_meta_f <- cur_game_meta1 %>%
@@ -149,8 +169,13 @@ build_pack_tag <- function(root, pack, pack_tag, game_tag, screen_tag, nextscree
                              JudgmentDelayTime="1000",
                              ResponseDelayTime="1000",
                              useTransitions="false",
-                             DebugInfo="false") %>%
+                             DebugInfo="false",
+                             TrialNum = trials) %>%
                       select(-blocks, -trials, -game_name, -game_blocks, -game_trials)
+                    
+                    # add attributes
+                    xmlAttrs(game_node) = cur_game_meta_f
+                    
                   } else {
                     if(tolower(cur_game_meta1$name) == "changedetection"){
                       cur_game_meta_f <- cur_game_meta1 %>%
@@ -161,24 +186,18 @@ build_pack_tag <- function(root, pack, pack_tag, game_tag, screen_tag, nextscree
                                PostTrialFixationTime="1000",
                                SameTrials="5", 
                                SquareNum="3",
-                               SquareDispNum="1") %>%
+                               SquareDispNum="1",
+                               TrialNum = trials) %>%
                         select(-blocks, -trials, -game_name, -game_blocks, -game_trials)
+                      
+                      # add attributes
+                      xmlAttrs(game_node) = cur_game_meta_f
                     } 
                   }
                 }
               }
             }
           }
-          
-          # add attributes
-          xmlAttrs(game_node) = cur_game_meta_f
-          
-          # # add blank blocks and trial sets
-          block_node = newXMLNode("Block", parent=game_node)
-          
-          trial_node = newXMLNode("TrialSet", parent=block_node)
-          
-          xmlAttrs(trial_node) = cur_game_meta1 %>% mutate(TrialNum = trials) %>% select(TrialNum)
           
         }
         
