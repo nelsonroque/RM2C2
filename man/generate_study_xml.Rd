@@ -10,7 +10,7 @@ generate_study_xml(input_file, project_name, verbose = T)
 RM2C2: Scoring, Summarizing
 }
 \examples{
-generate_study_xml(df, root_tag)
+generate_study_xml(input_file, project_name, verbose=T)
 }
 \keyword{cognition}
 \keyword{m2c2,}

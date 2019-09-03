@@ -7,6 +7,9 @@ restructure_tapping_data <- function(df, nontap_cols = c(1:17), tap_col = c(18))
   for(row in 1:nrow(df)){
     row.values.nontap <- df[row,nontap_cols]
     row.values.tap <- df[row,tap_col]
+    row.values.tap.v <- c(as.character(row.values.tap[,1]))
+    
+    # make vals $tap_values more generic
     vals <- strsplit(unlist(strsplit(row.values.tap$tap_values,"\\+")),"_")
     vals.df <- data.frame(t(sapply(vals,c)))
     names(vals.df) <- c("tap_x","tap_y","a", "b", "c", "d")

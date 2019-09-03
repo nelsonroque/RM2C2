@@ -5,7 +5,7 @@
 #' @examples
 #' build_pack_tag(df, root_tag)
 #' @export
-build_pack_tag <- function(root, pack, pack_tag, game_tag, screen_tag, nextscreen_tag, element_tag, option_tag) {
+build_pack_tag <- function(root, pack, pack_tag, game_tag, screen_tag, branch_tag, nextscreen_tag, element_tag, option_tag) {
   
   # pack list
   packing_list = split(pack, pack$pack_id)
@@ -56,9 +56,12 @@ build_pack_tag <- function(root, pack, pack_tag, game_tag, screen_tag, nextscree
         
         # select element type info
         cur_element_meta = cur_element %>% 
-          select(element_type, element_text) %>% 
-          mutate(type = element_type, text = element_text, id = gsub("[[:punct:]]","_",gsub(" ","_",tolower(element_text)))) %>% 
-          select(-element_type, -element_text)
+          select(element_id, element_type, element_text) %>% 
+          mutate(type = element_type, 
+                 text = element_text, 
+                 id = element_id) %>%
+                # id = gsub("[[:punct:]]","_",gsub(" ","_",tolower(element_text)))) %>% 
+          select(-element_type, -element_text, -element_id)
         
         if(cur_element_meta$type == "game") {
           

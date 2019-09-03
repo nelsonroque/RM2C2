@@ -3,7 +3,7 @@
 #' @name generate_study_xml
 #' @keywords m2c2, cognition
 #' @examples
-#' generate_study_xml(df, root_tag)
+#' generate_study_xml(input_file, project_name, verbose=T)
 #' @export
 generate_study_xml <- function(input_file, project_name, verbose=T) {
   
@@ -40,6 +40,13 @@ generate_study_xml <- function(input_file, project_name, verbose=T) {
   pack <- read_excel(input_file, sheet = "Pack")
   
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  # DATA VALIDATION
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+  ARE_ALL_PACK_ELEMENTS_UNIQUE = length(unique(pack$element_id)) == nrow(pack)
+  print(paste0("TEST: Are all pack elements unique? | RESULT: ", ARE_ALL_PACK_ELEMENTS_UNIQUE))
+  
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   # RUN STEPS TO BUILD XML
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   
@@ -50,7 +57,7 @@ generate_study_xml <- function(input_file, project_name, verbose=T) {
   doc_root_menu <- build_menu_tag(doc_root, menu, menu_tag, title_tag, element_tag, action_tag)
   
   # step 3) build pack
-  doc_root_menu_pack <- build_pack_tag(doc_root, pack, pack_tag, game_tag, screen_tag, nextscreen_tag, element_tag, option_tag)
+  doc_root_menu_pack <- build_pack_tag(doc_root, pack, pack_tag, game_tag, screen_tag, branch_tag, nextscreen_tag, element_tag, option_tag)
   
   # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   # VIEW FINAL XML
