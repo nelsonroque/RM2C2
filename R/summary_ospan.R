@@ -12,6 +12,7 @@ summary_ospan <- function(df, group_var) {
               sd.RT.distractor = sd(median.dist.RT, na.rm=T),
               median.RT.recall = median(recall.RT, na.rm=T),
               mean.RT.recall = mean(recall.RT, na.rm=T),
+              # median of median, and median and mean
               sd.RT.recall = sd(recall.RT, na.rm=T),
               sum.set_size = sum(set_size, na.rm=T),
               n.perfect.distractor = sum(perfect.distractor.trial),

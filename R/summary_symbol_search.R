@@ -25,6 +25,7 @@ summary_symbol_search <- function(df, group_var) {
               n.error.trials = n() - sum(accuracy),
               n.lure.trials = sum(trial_type == "LURE"),
               n.normal.trials = sum(trial_type == "NORMAL"),
+              # correct / incorrect tally for each of the breakdowns
               n.trials = n()) %>%
     mutate(PACKAGE.VERSION = PACKAGE.VERSION)
   
