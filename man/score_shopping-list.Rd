@@ -5,7 +5,7 @@
 \alias{score_shopping_list}
 \title{RM2C2: Scoring, Summarizing}
 \usage{
-score_shopping_list(df)
+score_shopping_list(df, app_version = "1_1_release_18_7_27")
 }
 \description{
 RM2C2: Scoring, Summarizing
