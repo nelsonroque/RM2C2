@@ -2,7 +2,7 @@
 
 #' @name summary_shopping_list
 #' @export
-summary_shopping_list <- function(df, group_var) {
+summary_shopping_list <- function(df, group_var, app_version="1_1_release_18_7_27") {
   PACKAGE.VERSION <- packageVersion("RM2C2")
   TASK_NAME = "SHOPPING_LIST"
   
