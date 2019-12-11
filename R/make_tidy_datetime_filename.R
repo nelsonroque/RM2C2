@@ -10,6 +10,6 @@
 #' make_tidy_datetime(datetime=NA, timezone="UTC")
 #' @export
 make_tidy_datetime_filename <- function(datetime=Sys.time(), timezone="UTC") {
-  dt <- as.POSIXlt(datetime, timezone, "%Y_%m_%dT%H_%M_%S")
+  dt <- format(datetime, timezone, "%Y_%m_%dT%H_%M_%S")
   return(dt)
 }
