@@ -4,8 +4,7 @@
 \alias{make_tidy_datetime_filename}
 \title{RM2C2: Scoring, Summarizing}
 \usage{
-make_tidy_datetime_filename(datetime = Sys.time(), timezone = "UTC",
-  prefix = "", suffix = "")
+make_tidy_datetime_filename()
 }
 \arguments{
 \item{datetime}{class: POSIXct}
