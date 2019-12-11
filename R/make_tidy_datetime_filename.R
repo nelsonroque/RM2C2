@@ -9,7 +9,8 @@
 #' @examples
 #' make_tidy_datetime(datetime=NA, timezone="UTC")
 #' @export
-make_tidy_datetime_filename <- function(datetime=Sys.time(), timezone="UTC") {
-  dt <- format(datetime, "%Y_%m_%dT%H_%M_%S")
+make_tidy_datetime_filename <- function() {
+  cur_dts <- Sys.time()
+  dt <- format(cur_dts, "%Y_%m_%dT%H_%M_%S")
   return(dt)
 }
