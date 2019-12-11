@@ -4,8 +4,13 @@
 \alias{read_parsed_dir}
 \title{RM2C2: Scoring, Summarizing}
 \usage{
-read_parsed_dir(dir, filetype = "txt", spattern = "gamedata_",
-  recursive = T, na = ".")
+read_parsed_dir(
+  dir,
+  filetype = "txt",
+  spattern = "gamedata_",
+  recursive = T,
+  na = "."
+)
 }
 \arguments{
 \item{filepath}{class: string}

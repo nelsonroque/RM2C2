@@ -4,8 +4,7 @@
 \alias{filter_studyday}
 \title{RM2C2: Scoring, Summarizing}
 \usage{
-filter_studyday(df, study_col = "studyday", start_day = 1,
-  end_day = 14)
+filter_studyday(df, study_col = "studyday", start_day = 1, end_day = 14)
 }
 \arguments{
 \item{df}{class: numeric; original X}

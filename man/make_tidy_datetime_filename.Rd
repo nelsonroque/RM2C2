@@ -10,14 +10,10 @@ make_tidy_datetime_filename()
 \item{datetime}{class: POSIXct}
 
 \item{timezone}{class: string}
-
-\item{prefix}{class: string}
-
-\item{suffix}{class: string}
 }
 \description{
 RM2C2: Scoring, Summarizing
 }
 \examples{
-make_tidy_datetime(datetime=NA, timezone="UTC")
+make_tidy_datetime_filename(datetime=NA, timezone="UTC")
 }
