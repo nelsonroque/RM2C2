@@ -14,7 +14,7 @@
 #' @examples
 #' download_zip_server(url, params, save_filename, save_path, unzip=T, remove_zip=F)
 #' @export
-download_zip_server <- function(url, params, save_filename, save_path, overwrite_zip=F, unzip=T, unzip_folder=NA, remove_zip=F) {
+download_zip_server <- function(url, params, save_filename, overwrite_zip=F, unzip=T, remove_zip=F) {
   print(paste0("Downloading data from remote server: ", url))
   
   # save latest file and parse it
@@ -24,20 +24,12 @@ download_zip_server <- function(url, params, save_filename, save_path, overwrite
   if(unzip) {
     # unzip the file
     try(unzip(save_filename))
-    
-    if(!is.na(unzip_folder)){
-      # get list of files in unzipped folderlatest output folder
-      files_in_folder <- list.files(pattern=unzip_folder, recursive=T, full.names=T)
-    } else {
-      files_in_folder <- "ERROR: unzipped folder name unknown"
-    }
   }
   
   # remove zip if requested
   if(remove_zip) {
     file.remove(save_filename)
-    # unlink(latest_out, recursive = TRUE)
   }
   
-  return(list(zip_location = paste0(getwd(), "/", save_filename), filenames = files_in_folder))
+  return(list(zip_location = paste0(save_filename)))
 }
