@@ -5,19 +5,19 @@
 \alias{filter_survey_duplicate_records}
 \title{RM2C2: Scoring, Summarizing}
 \usage{
-filter_survey_duplicate_records(
-  df,
-  group_vars = c("user_id", "Session"),
-  time_var = "End Time"
-)
+filter_survey_duplicate_records(df, group_vars = c("user_id", "Session"),
+  time_var = "End Time")
 
-filter_survey_duplicate_records(
-  df,
-  group_vars = c("user_id", "Session"),
-  time_var = "End Time"
-)
+filter_survey_duplicate_records(df, group_vars = c("user_id", "Session"),
+  time_var = "End Time")
 }
 \arguments{
+\item{df}{class: numeric; original X}
+
+\item{group_vars}{class: vector; factors to group data by}
+
+\item{time_var}{class: vector; variable for time}
+
 \item{df}{class: numeric; original X}
 
 \item{group_vars}{class: vector; factors to group data by}

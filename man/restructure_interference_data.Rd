@@ -4,7 +4,8 @@
 \alias{restructure_interference_data}
 \title{RM2C2: Scoring, Summarizing}
 \usage{
-restructure_interference_data(df, nontap_cols = c(1:13), tap_col = c(14))
+restructure_interference_data(df, nontap_cols = c(1:13),
+  tap_col = c(14))
 }
 \description{
 RM2C2: Scoring, Summarizing

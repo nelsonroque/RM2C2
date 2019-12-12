@@ -7,9 +7,11 @@
 build_root_tag(df, root_tag)
 }
 \arguments{
-\item{df}{class: string}
+\item{df}{class: dataframe}
 
 \item{root_tag}{class: string}
+
+\item{df}{class: string}
 }
 \description{
 RM2C2: Scoring, Summarizing
