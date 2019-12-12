@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_zip_server.R
 \name{download_zip_server}
 \alias{download_zip_server}
-\title{RM2C2}
+\title{RM2C2: Scoring, Summarizing}
 \usage{
 download_zip_server(url, params, save_filename, save_path,
   overwrite_zip = F, unzip = T, unzip_folder = NA, remove_zip = F)
@@ -25,7 +25,7 @@ download_zip_server(url, params, save_filename, save_path,
 \item{remove_zip}{class: boolean}
 }
 \description{
-RM2C2
+RM2C2: Scoring, Summarizing
 }
 \examples{
 download_zip_server(url, params, save_filename, save_path, unzip=T, remove_zip=F)

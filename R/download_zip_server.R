@@ -1,4 +1,4 @@
-#' RM2C2
+#' RM2C2: Scoring, Summarizing
 
 #' @name download_zip_server
 #' @param url class: string
