@@ -4,15 +4,13 @@
 #' @param url class: string
 #' @param params class: list
 #' @param save_filename class: string
-#' @param save_path class: string
 #' @param overwrite_zip class: boolean
 #' @param unzip class: boolean
-#' @param unzip_folder class: boolean
 #' @param remove_zip class: boolean
 #' @import tidyverse
 #' @import httr
 #' @examples
-#' download_zip_server(url, params, save_filename, save_path, unzip=T, remove_zip=F)
+#' download_zip_server(url, params, save_filename, overwrite_zip=T, unzip=T, remove_zip=F)
 #' @export
 download_zip_server <- function(url, params, save_filename, overwrite_zip=F, unzip=T, remove_zip=F) {
   print(paste0("Downloading data from remote server: ", url))
