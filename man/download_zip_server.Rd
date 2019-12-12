@@ -4,8 +4,8 @@
 \alias{download_zip_server}
 \title{RM2C2: Scoring, Summarizing}
 \usage{
-download_zip_server(url, params, save_filename, save_path,
-  overwrite_zip = F, unzip = T, unzip_folder = NA, remove_zip = F)
+download_zip_server(url, params, save_filename, overwrite_zip = F,
+  unzip = T, remove_zip = F)
 }
 \arguments{
 \item{url}{class: string}
@@ -14,13 +14,9 @@ download_zip_server(url, params, save_filename, save_path,
 
 \item{save_filename}{class: string}
 
-\item{save_path}{class: string}
-
 \item{overwrite_zip}{class: boolean}
 
 \item{unzip}{class: boolean}
-
-\item{unzip_folder}{class: boolean}
 
 \item{remove_zip}{class: boolean}
 }
@@ -28,5 +24,5 @@ download_zip_server(url, params, save_filename, save_path,
 RM2C2: Scoring, Summarizing
 }
 \examples{
-download_zip_server(url, params, save_filename, save_path, unzip=T, remove_zip=F)
+download_zip_server(url, params, save_filename, overwrite_zip=T, unzip=T, remove_zip=F)
 }
