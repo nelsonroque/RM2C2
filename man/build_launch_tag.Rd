@@ -4,8 +4,16 @@
 \alias{build_launch_tag}
 \title{RM2C2: Scoring, Summarizing}
 \usage{
-build_launch_tag(dolphin, launch, sensors, settings, root_tag, launch_tag,
-  sensor_tag, settings_tag)
+build_launch_tag(
+  dolphin,
+  launch,
+  sensors,
+  settings,
+  root_tag,
+  launch_tag,
+  sensor_tag,
+  settings_tag
+)
 }
 \description{
 RM2C2: Scoring, Summarizing

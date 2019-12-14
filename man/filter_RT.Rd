@@ -4,8 +4,7 @@
 \alias{filter_RT}
 \title{RM2C2: Scoring, Summarizing}
 \usage{
-filter_RT(df, RT_col = "response_time", lower_RT = 200,
-  upper_RT = 10000)
+filter_RT(df, RT_col = "response_time", lower_RT = 200, upper_RT = 10000)
 }
 \arguments{
 \item{df}{class: numeric; original X}

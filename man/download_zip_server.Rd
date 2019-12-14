@@ -4,8 +4,14 @@
 \alias{download_zip_server}
 \title{RM2C2: Scoring, Summarizing}
 \usage{
-download_zip_server(url, params, save_filename, overwrite_zip = F,
-  unzip = T, remove_zip = F)
+download_zip_server(
+  url,
+  params,
+  save_filename,
+  overwrite_zip = F,
+  unzip = T,
+  remove_zip = F
+)
 }
 \arguments{
 \item{url}{class: string}

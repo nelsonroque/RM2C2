@@ -1,6 +1,7 @@
 #' RM2C2: Scoring, Summarizing
 
 #' @name download_zip_server
+#' @export
 #' @param url class: string
 #' @param params class: list
 #' @param save_filename class: string
@@ -11,7 +12,6 @@
 #' @import httr
 #' @examples
 #' download_zip_server(url, params, save_filename, overwrite_zip=T, unzip=T, remove_zip=F)
-#' @export
 download_zip_server <- function(url, params, save_filename, overwrite_zip=F, unzip=T, remove_zip=F) {
   print(paste0("Downloading data from remote server: ", url))
   
